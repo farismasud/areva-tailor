@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { MapPin, Phone, Mail, Clock, Check } from "lucide-react"
+import { MapPin, Phone, Mail, Check } from "lucide-react"
 
 export default function ContactPage() {
   // State buat nyimpen layanan yang dipilih

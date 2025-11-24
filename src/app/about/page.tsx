@@ -13,8 +13,9 @@ export default function AboutPage() {
       {/* Story Content */}
       <section className="py-24 container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center space-y-12">
+          {/* GANTI BAGIAN INI: Pake &quot; sebagai pengganti tanda kutip */}
           <p className="text-2xl md:text-3xl font-serif leading-relaxed text-neutral-200">
-            "We believe that a suit is not just clothing. It is a statement of character, precision, and elegance."
+            &quot;We believe that a suit is not just clothing. It is a statement of character, precision, and elegance.&quot;
           </p>
           <div className="w-[1px] h-24 bg-gold mx-auto opacity-50"></div>
           
@@ -22,8 +23,9 @@ export default function AboutPage() {
             <p>
               Berawal dari sebuah workshop kecil di sudut Jakarta, Areva Tailor didirikan dengan satu visi: mengembalikan esensi dari seni menjahit tradisional (Bespoke) yang mulai hilang di era fast fashion.
             </p>
+            {/* GANTI BAGIAN INI JUGA: "Canvas" jadi &quot;Canvas&quot; */}
             <p>
-              Setiap jahitan di Areva adalah hasil dedikasi artisan yang telah berpengalaman puluhan tahun. Kami menolak jalan pintas. Kami menggunakan teknik "Canvas" tradisional untuk memastikan jas Anda memiliki struktur yang kokoh namun tetap fleksibel mengikuti gerak tubuh.
+              Setiap jahitan di Areva adalah hasil dedikasi artisan yang telah berpengalaman puluhan tahun. Kami menolak jalan pintas. Kami menggunakan teknik &quot;Canvas&quot; tradisional untuk memastikan jas Anda memiliki struktur yang kokoh namun tetap fleksibel mengikuti gerak tubuh.
             </p>
           </div>
         </div>
