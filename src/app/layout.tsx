@@ -1,26 +1,17 @@
-// src/app/layout.tsx
-
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// Ganti font sesuai selera, Inter bawaan nextjs udah bagus buat shadcn
+import { Inter } from "next/font/google"; 
 import "./globals.css";
 
-// Import komponen baru kita
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+// Import Component yang baru dibuat
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Areva Tailor - Custom Clothing", // Ganti titlenya bro
-  description: "Jasa pembuatan jas, batik, kemeja, dan celana custom.",
+  title: "Areva Tailor | Professional Convection",
+  description: "Jasa jahit dan konveksi terbaik.",
 };
 
 export default function RootLayout({
@@ -29,17 +20,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* Tambahkan div wrapper untuk layout sticky footer */}
-        <div className="flex min-h-screen flex-col">
-          <Navbar />
-          {/* Buat konten utama bisa tumbuh mengisi ruang */}
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+    <html lang="id">
+      <body className={`${inter.className} min-h-screen flex flex-col bg-background text-foreground`}>
+        
+        {/* Navbar Component */}
+        <Navbar />
+
+        {/* Konten Utama */}
+        <main className="flex-1">
+          {children}
+        </main>
+
+        {/* Footer Component */}
+        <Footer />
+        
       </body>
     </html>
   );
