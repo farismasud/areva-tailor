@@ -1,84 +1,50 @@
-import Image from "next/image"
-import { CheckCircle2 } from "lucide-react"
-
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section About */}
-      <section className="bg-slate-900 text-white py-20">
-        <div className="container px-4 mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">Tentang Areva Tailor</h1>
-          <p className="text-slate-300 max-w-2xl mx-auto text-lg">
-            Lebih dari sekadar menjahit kain. Kami membangun citra profesional Anda melalui potongan yang presisi.
+    <div className="min-h-screen bg-neutral-950 text-white">
+      {/* Header Image / Hero */}
+      <section className="relative h-[60vh] flex items-center justify-center bg-black overflow-hidden border-b border-white/5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent)] opacity-50" />
+        <div className="text-center z-10 px-4">
+          <h1 className="text-5xl md:text-7xl font-serif mb-6 tracking-wide">OUR HERITAGE</h1>
+          <p className="text-gold text-sm tracking-[0.3em] uppercase">Est. 2024 • Jakarta</p>
+        </div>
+      </section>
+
+      {/* Story Content */}
+      <section className="py-24 container mx-auto px-4 md:px-6">
+        <div className="max-w-3xl mx-auto text-center space-y-12">
+          <p className="text-2xl md:text-3xl font-serif leading-relaxed text-neutral-200">
+            "We believe that a suit is not just clothing. It is a statement of character, precision, and elegance."
           </p>
-        </div>
-      </section>
-
-      {/* Story Section */}
-      <section className="py-16 md:py-24">
-        <div className="container px-4 mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Image Placeholder */}
-            <div className="relative h-[400px] w-full bg-slate-100 rounded-2xl overflow-hidden shadow-lg">
-              {/* Nanti ganti pake foto workshop/owner asli */}
-              <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-medium bg-slate-200">
-                Foto Workshop / Owner
-              </div>
-              {/* <Image src="/workshop.jpg" alt="Workshop" fill className="object-cover" /> */}
-            </div>
-
-            {/* Content */}
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-slate-900">Dedikasi pada Detail</h2>
-              <p className="text-slate-600 leading-relaxed text-lg">
-                Berdiri sejak tahun 20XX, Areva Tailor bermula dari sebuah workshop kecil dengan satu visi: menghadirkan pakaian tailor-made yang terjangkau namun dengan kualitas jahitan butik.
-              </p>
-              <p className="text-slate-600 leading-relaxed text-lg">
-                Kini, kami dipercaya oleh berbagai instansi perusahaan dan perorangan untuk menangani kebutuhan seragam dinas, jas pernikahan, hingga pakaian casual harian.
-              </p>
-              
-              {/* List Keunggulan */}
-              <div className="space-y-3 pt-4">
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="text-green-600" />
-                  <span className="font-medium text-slate-700">Material Kualitas Terbaik</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="text-green-600" />
-                  <span className="font-medium text-slate-700">Garansi Perbaikan Jahitan</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="text-green-600" />
-                  <span className="font-medium text-slate-700">Pengerjaan Tepat Waktu</span>
-                </div>
-              </div>
-            </div>
+          <div className="w-[1px] h-24 bg-gold mx-auto opacity-50"></div>
+          
+          <div className="text-neutral-400 leading-loose font-light space-y-6 text-lg text-justify md:text-center">
+            <p>
+              Berawal dari sebuah workshop kecil di sudut Jakarta, Areva Tailor didirikan dengan satu visi: mengembalikan esensi dari seni menjahit tradisional (Bespoke) yang mulai hilang di era fast fashion.
+            </p>
+            <p>
+              Setiap jahitan di Areva adalah hasil dedikasi artisan yang telah berpengalaman puluhan tahun. Kami menolak jalan pintas. Kami menggunakan teknik "Canvas" tradisional untuk memastikan jas Anda memiliki struktur yang kokoh namun tetap fleksibel mengikuti gerak tubuh.
+            </p>
           </div>
         </div>
       </section>
-
-      {/* Stats Section (Optional - Biar keliatan Pro) */}
-      <section className="bg-slate-50 py-16">
-        <div className="container px-4 mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      
+      {/* Stats Simple */}
+      <section className="border-t border-b border-white/5 py-16 bg-black">
+         <div className="container mx-auto grid grid-cols-3 text-center divide-x divide-white/10">
             <div>
-              <div className="text-4xl font-bold text-blue-900 mb-2">5+</div>
-              <div className="text-slate-600">Tahun Pengalaman</div>
+               <span className="block text-4xl font-serif text-gold mb-2">10+</span>
+               <span className="text-xs text-neutral-500 tracking-widest uppercase">Years Experience</span>
             </div>
             <div>
-              <div className="text-4xl font-bold text-blue-900 mb-2">1000+</div>
-              <div className="text-slate-600">Pakaian Terjahit</div>
+               <span className="block text-4xl font-serif text-gold mb-2">1K+</span>
+               <span className="text-xs text-neutral-500 tracking-widest uppercase">Suits Crafted</span>
             </div>
             <div>
-              <div className="text-4xl font-bold text-blue-900 mb-2">50+</div>
-              <div className="text-slate-600">Klien Perusahaan</div>
+               <span className="block text-4xl font-serif text-gold mb-2">100%</span>
+               <span className="text-xs text-neutral-500 tracking-widest uppercase">Handmade</span>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-blue-900 mb-2">100%</div>
-              <div className="text-slate-600">Kepuasan Pelanggan</div>
-            </div>
-          </div>
-        </div>
+         </div>
       </section>
     </div>
   )

@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
-// Ganti font sesuai selera, Inter bawaan nextjs udah bagus buat shadcn
-import { Inter } from "next/font/google"; 
+// Import Font Google
+import { Cinzel, Lato } from "next/font/google"; 
 import "./globals.css";
-
-// Import Component yang baru dibuat
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+// Setup Font Judul (Cinzel)
+const cinzel = Cinzel({ 
+  subsets: ["latin"], 
+  variable: "--font-cinzel",
+  weight: ["400", "700"] 
+});
+
+// Setup Font Isi (Lato)
+const lato = Lato({ 
+  subsets: ["latin"], 
+  variable: "--font-lato",
+  weight: ["400", "700"] 
+});
 
 export const metadata: Metadata = {
-  title: "Areva Tailor | Professional Convection",
-  description: "Jasa jahit dan konveksi terbaik.",
+  title: "AREVA INTERNATIONAL TAILOR",
+  description: "Exclusive Bespoke Tailoring.",
 };
 
 export default function RootLayout({
@@ -21,19 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className={`${inter.className} min-h-screen flex flex-col bg-background text-foreground`}>
-        
-        {/* Navbar Component */}
+      {/* Pasang variable font disini */}
+      <body className={`${cinzel.variable} ${lato.variable} font-sans min-h-screen flex flex-col bg-background text-foreground`}>
         <Navbar />
-
-        {/* Konten Utama */}
         <main className="flex-1">
           {children}
         </main>
-
-        {/* Footer Component */}
         <Footer />
-        
       </body>
     </html>
   );
