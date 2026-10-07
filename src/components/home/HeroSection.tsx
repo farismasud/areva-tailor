@@ -5,6 +5,7 @@ import Image from "next/image"
 import { motion, useReducedMotion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Ruler, Scissors, Sparkles } from "lucide-react"
+import { SilkClothCanvas } from "@/components/home/SilkClothCanvas"
 import type { Product } from "@/types/database.types"
 
 interface HeroSectionProps {
@@ -16,10 +17,13 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* === HERO SECTION: Asymmetric Luxury Split === */}
-      <section className="relative min-h-[92dvh] flex items-center overflow-hidden border-b border-white/10 pt-8 pb-16 md:py-24">
-        {/* Subtle radial glow & noise background */}
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(212,155,53,0.12),transparent_70%)]" />
+      {/* === HERO SECTION: Asymmetric Luxury Split with 3D Silk Shader === */}
+      <section className="relative min-h-[95dvh] flex items-center overflow-hidden border-b border-white/10 pt-8 pb-16 md:py-24">
+        {/* 3D WebGL Fabric Wave Canvas (ThreeUI / mesh3d inspired) */}
+        {!reduce && <SilkClothCanvas />}
+
+        {/* Ambient lighting layer */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(212,155,53,0.1),transparent_75%)]" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
