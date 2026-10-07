@@ -41,10 +41,13 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-    /* Efek Vignette halus biar fokus ke tengah */
-    background-image: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+  html, body {
+    background-color: #050505 !important;
+    color: hsl(var(--foreground));
     min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body {
+    background-image: radial-gradient(ellipse at 50% 0%, #171512 0%, #050505 80%);
   }
 }

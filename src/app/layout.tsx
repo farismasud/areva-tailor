@@ -30,9 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
+    <html lang="en" className="dark bg-[#050505]">
       {/* Pasang variable font disini */}
-      <body className={`${cinzel.variable} ${lato.variable} font-sans min-h-screen flex flex-col bg-background text-foreground`}>
+      <body className={`${cinzel.variable} ${lato.variable} font-sans min-h-screen flex flex-col bg-[#050505] text-foreground antialiased selection:bg-gold/30 selection:text-white`}>
         <Navbar />
         <main className="flex-1">
           {children}

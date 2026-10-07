@@ -39,11 +39,11 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
-          <span className="text-gold text-xs tracking-[0.3em] uppercase">The Collection</span>
-          <h1 className="text-4xl md:text-6xl font-serif font-normal tracking-wide">
+          <span className="font-mono text-xs text-gold uppercase tracking-[0.3em]">Permanent Archive</span>
+          <h1 className="text-4xl md:text-6xl font-serif font-normal tracking-tight text-white">
             MASTERPIECES
           </h1>
-          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-6"></div>
+          <div className="w-16 h-[1px] bg-[#3a3a3a] mx-auto mt-6"></div>
         </div>
 
         {/* Category Filter Bar */}
@@ -54,10 +54,10 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
               <Link
                 key={cat.value}
                 href={cat.value === "all" ? "/products" : `/products?category=${cat.value}`}
-                className={`px-5 py-2.5 rounded-full text-xs tracking-widest uppercase transition-all duration-300 border ${
+                className={`px-5 py-2 rounded-full text-[11px] font-mono tracking-[0.2em] uppercase transition-all duration-300 border ${
                   isSelected
-                    ? "bg-gold text-black border-gold font-semibold shadow-[0_0_20px_rgba(212,155,53,0.3)]"
-                    : "bg-white/5 text-neutral-400 border-white/10 hover:border-gold/40 hover:text-white"
+                    ? "bg-white text-black border-white font-semibold"
+                    : "bg-[#0d0d0d] text-[#999999] border-[#262626] hover:border-white hover:text-white"
                 }`}
               >
                 {cat.label}
@@ -123,8 +123,8 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
         {/* Empty State */}
         {products?.length === 0 && (
-          <div className="text-center py-20 border border-white/5 bg-white/5 rounded-[1.5rem]">
-            <p className="text-neutral-500 font-serif italic">Collection coming soon.</p>
+          <div className="text-center py-20 border border-[#262626] bg-[#0d0d0d] rounded-2xl">
+            <p className="text-[#999999] font-mono text-xs uppercase tracking-widest">Archive coming soon.</p>
           </div>
         )}
 

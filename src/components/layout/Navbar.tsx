@@ -4,18 +4,18 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ArrowUpRight } from "lucide-react"
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-neutral-950/80 backdrop-blur-md transition-all duration-300">
-      <div className="container mx-auto px-4 md:px-8 flex h-20 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b border-[#262626] bg-[#050505]/90 backdrop-blur-xl transition-all duration-300">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 flex h-20 items-center justify-between">
         
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="relative h-10 w-40 md:h-12 md:w-48 transition-transform duration-500 group-hover:scale-105"> 
+          <div className="relative h-10 w-40 md:h-11 md:w-44 transition-opacity duration-300 hover:opacity-85"> 
             <Image 
               src="/logo-areva.png"
               alt="Areva International Tailor" 
@@ -26,8 +26,8 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* MENU DESKTOP */}
-        <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
+        {/* MENU DESKTOP: Bugatti & Superhuman Precision */}
+        <nav className="hidden md:flex items-center gap-8 lg:gap-12">
           {[
             { label: 'MAISON', href: '/' },
             { label: 'COLLECTION', href: '/products' },
@@ -37,30 +37,31 @@ export default function Navbar() {
             <Link 
               key={item.label} 
               href={item.href} 
-              className="relative text-neutral-400 hover:text-gold transition-colors font-serif text-xs uppercase tracking-[0.25em] py-1 group"
+              className="text-[#999999] hover:text-white transition-colors font-mono text-[11px] uppercase tracking-[0.25em] py-2 relative group"
             >
               {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gold transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
             </Link>
           ))}
         </nav>
 
-        {/* TOMBOL KANAN & MOBILE TOGGLE */}
-        <div className="flex items-center gap-3">
-          <Link href="/products" className="hidden sm:inline-block">
+        {/* RIGHT ACTION: Pill Button with Hairline Border */}
+        <div className="flex items-center gap-4">
+          <Link href="/contact" className="hidden sm:inline-block">
             <Button 
               size="sm" 
-              className="rounded-full bg-gold/15 text-gold hover:bg-gold hover:text-black border border-gold/40 text-xs font-serif tracking-widest px-5 h-9 transition-all duration-300 cursor-pointer"
+              className="rounded-full bg-transparent text-white hover:bg-white hover:text-black border border-[#3a3a3a] hover:border-white text-[11px] font-mono uppercase tracking-[0.2em] px-5 h-9 transition-all duration-300 cursor-pointer shadow-none"
             >
-              CATALOG
+              <span>RESERVE</span>
+              <ArrowUpRight size={12} className="ml-1 opacity-70" />
             </Button>
           </Link>
           
           <button 
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-neutral-300 hover:text-white rounded-lg border border-white/10 hover:border-gold/40 transition-colors"
-            aria-label="Toggle menu"
+            className="md:hidden p-2 text-neutral-400 hover:text-white rounded-lg border border-[#262626] transition-colors"
+            aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -70,7 +71,7 @@ export default function Navbar() {
 
       {/* MOBILE MENU ACCORDION */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-white/10 bg-neutral-950/95 backdrop-blur-xl px-6 py-6 space-y-4">
+        <div className="md:hidden border-b border-[#262626] bg-[#050505]/98 px-6 py-6 space-y-4">
           {[
             { label: 'MAISON', href: '/' },
             { label: 'COLLECTION', href: '/products' },
@@ -81,14 +82,14 @@ export default function Navbar() {
               key={item.label} 
               href={item.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-serif tracking-[0.2em] text-neutral-300 hover:text-gold py-2 border-b border-white/5"
+              className="block text-xs font-mono tracking-[0.25em] text-[#cccccc] hover:text-white py-2 border-b border-[#1f1f1f]"
             >
               {item.label}
             </Link>
           ))}
           <div className="pt-2">
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-              <Button className="w-full bg-gold text-black hover:bg-gold-light rounded-full text-xs font-serif tracking-widest h-11">
+              <Button className="w-full bg-white text-black hover:bg-neutral-200 rounded-full text-xs font-mono tracking-[0.2em] uppercase h-11">
                 RESERVE APPOINTMENT
               </Button>
             </Link>

@@ -27,15 +27,15 @@ export default function ContactPage() {
     setLoading(true)
     setErrorMessage(null)
 
-    // Format pesan WhatsApp agar langsung terhubung ke admin
+    // Format WhatsApp message in English
     const waText = encodeURIComponent(
-      `Halo Atelier Areva Tailor, saya ingin reservasi konsultasi:\n\n` +
-      `• Nama: ${name}\n` +
-      `• Layanan: ${selectedService}\n` +
-      `• Tanggal: ${preferredDate || "Fleksibel"}\n` +
-      `• Waktu: ${preferredTime || "Fleksibel"}\n` +
-      `• Catatan: ${notes || "-"}\n\n` +
-      `Mohon konfirmasi jadwal temu ukur. Terima kasih!`
+      `Hello Areva Atelier, I would like to schedule a private fitting appointment:\n\n` +
+      `• Name: ${name}\n` +
+      `• Service: ${selectedService}\n` +
+      `• Preferred Date: ${preferredDate || "Flexible"}\n` +
+      `• Preferred Time: ${preferredTime || "Flexible"}\n` +
+      `• Special Requests: ${notes || "None"}\n\n` +
+      `Please confirm the atelier availability. Thank you.`
     )
 
     // Buka WhatsApp admin
@@ -62,10 +62,10 @@ export default function ContactPage() {
         
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
-          <span className="text-gold text-xs font-bold tracking-[0.3em] uppercase">Reservation</span>
-          <h1 className="text-4xl md:text-5xl font-serif">PRIVATE APPOINTMENT</h1>
-          <p className="text-neutral-400 max-w-lg mx-auto font-light">
-            Jadwalkan konsultasi eksklusif Anda. Tim ahli kami siap membantu mewujudkan pakaian impian Anda.
+          <span className="font-mono text-xs text-gold uppercase tracking-[0.3em]">Bespoke Reservation</span>
+          <h1 className="text-4xl md:text-6xl font-serif text-white tracking-tight">PRIVATE APPOINTMENT</h1>
+          <p className="text-[#999999] max-w-lg mx-auto font-light text-sm sm:text-base leading-relaxed">
+            Schedule an exclusive sartorial consultation. Our master tailors are at your service for precise anatomical measurement.
           </p>
         </div>
 

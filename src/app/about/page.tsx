@@ -1,50 +1,64 @@
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { ArrowUpRight } from "lucide-react"
+
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white">
-      {/* Header Image / Hero */}
-      <section className="relative h-[60vh] flex items-center justify-center bg-black overflow-hidden border-b border-white/5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent)] opacity-50" />
-        <div className="text-center z-10 px-4">
-          <h1 className="text-5xl md:text-7xl font-serif mb-6 tracking-wide">OUR HERITAGE</h1>
-          <p className="text-gold text-sm tracking-[0.3em] uppercase">Est. 2024 • Jakarta</p>
+    <div className="min-h-screen bg-[#050505] text-white">
+      {/* Header Banner */}
+      <section className="relative h-[50vh] flex items-center justify-center bg-[#080808] overflow-hidden border-b border-[#262626]">
+        <div className="text-center z-10 px-4 space-y-4">
+          <span className="font-mono text-xs text-gold uppercase tracking-[0.3em]">Atelier Heritage</span>
+          <h1 className="text-4xl md:text-7xl font-serif tracking-tight text-white">SAVOIR-FAIRE</h1>
+          <p className="font-mono text-xs text-[#999999] uppercase tracking-[0.25em]">Est. 2024 • Jakarta</p>
         </div>
       </section>
 
       {/* Story Content */}
-      <section className="py-24 container mx-auto px-4 md:px-6">
+      <section className="py-24 container mx-auto px-4 sm:px-6 lg:px-12">
         <div className="max-w-3xl mx-auto text-center space-y-12">
-          {/* GANTI BAGIAN INI: Pake &quot; sebagai pengganti tanda kutip */}
-          <p className="text-2xl md:text-3xl font-serif leading-relaxed text-neutral-200">
-            &quot;We believe that a suit is not just clothing. It is a statement of character, precision, and elegance.&quot;
+          <p className="text-2xl md:text-4xl font-serif leading-relaxed text-[#ffffff] font-normal tracking-wide">
+            &quot;A bespoke garment is not merely assembled cloth. It is an architectural dialogue between human posture and textile tension.&quot;
           </p>
-          <div className="w-[1px] h-24 bg-gold mx-auto opacity-50"></div>
+          <div className="w-[1px] h-16 bg-[#3a3a3a] mx-auto"></div>
           
-          <div className="text-neutral-400 leading-loose font-light space-y-6 text-lg text-justify md:text-center">
+          <div className="text-[#999999] leading-loose font-light space-y-6 text-base sm:text-lg text-left md:text-center">
             <p>
-              Berawal dari sebuah workshop kecil di sudut Jakarta, Areva Tailor didirikan dengan satu visi: mengembalikan esensi dari seni menjahit tradisional (Bespoke) yang mulai hilang di era fast fashion.
+              Founded in Jakarta, Areva International Tailor emerged from an uncompromising devotion to classical bespoke tailoring. In an age dominated by industrial ready-to-wear, our atelier preserves the time-honored discipline of pure anatomical drafting.
             </p>
-            {/* GANTI BAGIAN INI JUGA: "Canvas" jadi &quot;Canvas&quot; */}
             <p>
-              Setiap jahitan di Areva adalah hasil dedikasi artisan yang telah berpengalaman puluhan tahun. Kami menolak jalan pintas. Kami menggunakan teknik &quot;Canvas&quot; tradisional untuk memastikan jas Anda memiliki struktur yang kokoh namun tetap fleksibel mengikuti gerak tubuh.
+              Every garment is individually drafted on paper, cut by hand, and constructed with floating horsehair canvas. This ensures the chest piece adapts organically to the wearer&apos;s heat and posture, breathing naturally and retaining structural integrity over generations.
             </p>
+          </div>
+
+          <div className="pt-6">
+            <Link href="/contact">
+              <Button 
+                size="lg" 
+                className="rounded-full bg-white hover:bg-neutral-200 text-black font-mono text-xs uppercase tracking-[0.2em] px-8 h-13 shadow-none border border-white cursor-pointer"
+              >
+                <span>Reserve a Fitting</span>
+                <ArrowUpRight size={14} className="ml-1 opacity-70" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
       
-      {/* Stats Simple */}
-      <section className="border-t border-b border-white/5 py-16 bg-black">
-         <div className="container mx-auto grid grid-cols-3 text-center divide-x divide-white/10">
+      {/* Precision Metrics */}
+      <section className="border-t border-b border-[#262626] py-16 bg-[#080808]">
+         <div className="container mx-auto grid grid-cols-3 text-center divide-x divide-[#262626]">
             <div>
-               <span className="block text-4xl font-serif text-gold mb-2">10+</span>
-               <span className="text-xs text-neutral-500 tracking-widest uppercase">Years Experience</span>
+               <span className="block text-3xl sm:text-4xl font-mono text-white mb-2">15+</span>
+               <span className="font-mono text-[10px] text-[#999999] tracking-[0.25em] uppercase">Master Artisans</span>
             </div>
             <div>
-               <span className="block text-4xl font-serif text-gold mb-2">1K+</span>
-               <span className="text-xs text-neutral-500 tracking-widest uppercase">Suits Crafted</span>
+               <span className="block text-3xl sm:text-4xl font-mono text-white mb-2">100%</span>
+               <span className="font-mono text-[10px] text-[#999999] tracking-[0.25em] uppercase">Hand-Canvassed</span>
             </div>
             <div>
-               <span className="block text-4xl font-serif text-gold mb-2">100%</span>
-               <span className="text-xs text-neutral-500 tracking-widest uppercase">Handmade</span>
+               <span className="block text-3xl sm:text-4xl font-mono text-white mb-2">5,000+</span>
+               <span className="font-mono text-[10px] text-[#999999] tracking-[0.25em] uppercase">Mill Swatches</span>
             </div>
          </div>
       </section>

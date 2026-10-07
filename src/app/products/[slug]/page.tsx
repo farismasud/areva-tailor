@@ -132,18 +132,18 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mt-auto">
               <a 
-                href={`https://wa.me/628123456789?text=Hello Areva Tailor, I am interested in ${product.name}`}
+                href={`https://wa.me/628123456789?text=${encodeURIComponent(`Hello Areva Atelier, I am interested in inquiring about ${product.name}.`)}`}
                 target="_blank"
                 rel="noreferrer"
                 className="flex-1"
               >
-                <Button size="lg" className="w-full bg-gold hover:bg-gold-light text-black font-bold tracking-widest h-14 rounded-full shadow-[0_0_20px_rgba(212,155,53,0.2)] hover:shadow-[0_0_30px_rgba(212,155,53,0.4)] transition-all hover:scale-[1.02]">
-                  INQUIRE NOW
+                <Button size="lg" className="w-full bg-white hover:bg-neutral-200 text-black font-mono text-xs uppercase tracking-[0.2em] h-13 rounded-full border border-white cursor-pointer shadow-none">
+                  INQUIRE VIA WHATSAPP
                 </Button>
               </a>
               
               <Link href="/contact" className="flex-1">
-                 <Button variant="outline" size="lg" className="w-full border-white/10 text-white hover:bg-white hover:text-black font-bold tracking-widest h-14 rounded-full bg-transparent">
+                 <Button variant="outline" size="lg" className="w-full border-[#3a3a3a] text-white hover:border-white hover:bg-white/5 font-mono text-xs uppercase tracking-[0.2em] h-13 rounded-full bg-transparent cursor-pointer">
                    BOOK APPOINTMENT
                  </Button>
               </Link>
