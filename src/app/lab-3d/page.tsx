@@ -2,18 +2,20 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, Sparkles, Box, Activity, Layers } from "lucide-react"
+import { ArrowLeft, Sparkles, Box, Activity, Layers, Scissors, Grid } from "lucide-react"
 import { SilkClothCanvas } from "@/components/home/SilkClothCanvas"
 import { Mannequin3DCanvas } from "@/components/3d-lab/Mannequin3DCanvas"
 import { KineticFibers3DCanvas } from "@/components/3d-lab/KineticFibers3DCanvas"
 import { SilkRibbon3DCanvas } from "@/components/3d-lab/SilkRibbon3DCanvas"
+import { GoldenShears3DCanvas } from "@/components/3d-lab/GoldenShears3DCanvas"
+import { LoomMatrix3DCanvas } from "@/components/3d-lab/LoomMatrix3DCanvas"
 
 const experiments = [
   {
     id: "mannequin",
     name: "01 / Sartorial Torso (Wireframe Mannequin)",
     tag: "Architectural & Precise",
-    desc: "Anatomical dress form mannequin with horizontal contour slice lines and glowing anatomical measurement points, rotating and tilting with cursor interaction.",
+    desc: "Anatomical dress form mannequin with horizontal contour slice lines and glowing measurement points, rotating and tilting with cursor interaction.",
     icon: Box,
     component: Mannequin3DCanvas,
   },
@@ -34,8 +36,24 @@ const experiments = [
     component: SilkRibbon3DCanvas,
   },
   {
+    id: "shears",
+    name: "04 / Golden Shears (Artisan Scissors)",
+    tag: "Sculptural Craftsmanship",
+    desc: "Polished bespoke brass tailor shears carving geometric pattern drafting lines in space with rhythmic snip physics.",
+    icon: Scissors,
+    component: GoldenShears3DCanvas,
+  },
+  {
+    id: "loom",
+    name: "05 / Loom Matrix & Weft Lattice",
+    tag: "Tactile Textile Physics",
+    desc: "Warp and weft grid nodes undulating in real-time, simulating high-count Italian Super 150s woven wool structure.",
+    icon: Grid,
+    component: LoomMatrix3DCanvas,
+  },
+  {
     id: "cloth",
-    name: "04 / Current Silk Cloth Drape",
+    name: "06 / Current Silk Cloth Drape",
     tag: "Active on Homepage",
     desc: "Woven silk plane simulation with custom GLSL vertex shader rippling dynamically beneath the mouse cursor.",
     icon: Sparkles,
@@ -70,7 +88,7 @@ export default function Lab3DPage() {
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span className="font-mono text-[11px] text-[#999999] uppercase tracking-widest">
-            WebGL Live Playground
+            6 WebGL Experiments Ready
           </span>
         </div>
       </header>
@@ -78,18 +96,18 @@ export default function Lab3DPage() {
       {/* Main Showcase Layout */}
       <div className="flex-1 grid lg:grid-cols-12 relative overflow-hidden">
         {/* Left Control Panel */}
-        <aside className="lg:col-span-4 border-r border-[#262626] p-6 lg:p-8 flex flex-col justify-between bg-[#080808]/70 backdrop-blur-md z-10">
+        <aside className="lg:col-span-4 border-r border-[#262626] p-6 lg:p-8 flex flex-col justify-between bg-[#080808]/70 backdrop-blur-md z-10 overflow-y-auto max-h-[calc(100vh-4rem)]">
           <div className="space-y-6">
             <div>
               <span className="font-mono text-[10px] text-gold uppercase tracking-[0.3em]">Bespoke 3D Exploration</span>
               <h1 className="text-2xl sm:text-3xl font-serif text-white mt-1">Sartorial 3D Concepts</h1>
               <p className="text-xs text-[#999999] font-light leading-relaxed mt-2">
-                Pilih konsep 3D di bawah ini untuk melihat pergerakan fisik kain, partikel, atau anatomi torso secara real-time. Gerakkan kursor di area kanvas untuk menguji interaksinya.
+                Pilih konsep 3D di bawah ini untuk melihat pergerakan fisik kain, partikel, anatomi torso, gunting tailor, atau struktur tenun benang secara real-time.
               </p>
             </div>
 
             {/* Selector Options */}
-            <div className="space-y-3 pt-2">
+            <div className="space-y-2.5 pt-1">
               {experiments.map((exp) => {
                 const isSelected = activeId === exp.id
                 const Icon = exp.icon
@@ -97,14 +115,14 @@ export default function Lab3DPage() {
                   <button
                     key={exp.id}
                     onClick={() => setActiveId(exp.id)}
-                    className={`w-full text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-start gap-4 ${
+                    className={`w-full text-left p-3.5 rounded-xl border transition-all duration-300 cursor-pointer flex items-start gap-3.5 ${
                       isSelected
                         ? "bg-[#141414] border-gold text-white shadow-[0_0_20px_rgba(212,155,53,0.15)]"
                         : "bg-[#0a0a0a] border-[#262626] text-[#999999] hover:border-[#3a3a3a] hover:text-white"
                     }`}
                   >
-                    <div className={`p-2 rounded-lg border ${isSelected ? "border-gold/40 text-gold bg-gold/10" : "border-[#262626] text-neutral-400"}`}>
-                      <Icon size={18} />
+                    <div className={`p-2 rounded-lg border mt-0.5 ${isSelected ? "border-gold/40 text-gold bg-gold/10" : "border-[#262626] text-neutral-400"}`}>
+                      <Icon size={16} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
@@ -123,8 +141,8 @@ export default function Lab3DPage() {
             </div>
           </div>
 
-          <div className="pt-6 border-t border-[#1f1f1f]">
-            <div className="p-4 rounded-xl bg-black/60 border border-white/10 space-y-2">
+          <div className="pt-6 border-t border-[#1f1f1f] mt-6">
+            <div className="p-4 rounded-xl bg-black/60 border border-white/10 space-y-1.5">
               <span className="font-mono text-[10px] uppercase tracking-widest text-[#888888]">Tips Interaksi</span>
               <p className="text-xs text-[#cccccc] font-light leading-relaxed">
                 Arahkan kursor mouse ke kanvas sebelah kanan. Setiap model memiliki kurva physics dan specular lighting yang unik.
@@ -134,7 +152,7 @@ export default function Lab3DPage() {
         </aside>
 
         {/* Right 3D Viewport */}
-        <main className="lg:col-span-8 relative min-h-[500px] lg:min-h-full flex items-center justify-center bg-[#050505]">
+        <main className="lg:col-span-8 relative min-h-[550px] lg:min-h-full flex items-center justify-center bg-[#050505]">
           {/* Subtle Ambient Radial Light */}
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,#171512_0%,#050505_75%)]" />
 
