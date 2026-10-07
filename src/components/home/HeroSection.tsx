@@ -226,16 +226,16 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
               {/* Masked Editorial Headline */}
               <div className="space-y-1">
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif text-white leading-[1.08] tracking-tight">
-                  Anatomy of
+                  Handcrafted Suits
                 </h1>
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif leading-[1.08] tracking-tight">
-                  <span className="text-gold italic font-light">Bespoke Precision</span>
+                  <span className="text-gold italic font-light">Tailored to Perfection</span>
                 </h1>
               </div>
 
               {/* Subhead Paragraph */}
               <p className="text-sm sm:text-base text-[#cccccc] font-light leading-relaxed max-w-xl">
-                Master craftsmanship engineered to the natural contours of your physique. Sculpted with hand-canvassed construction and prestigious European wools from Scabal and Loro Piana.
+                Experience world-class custom tailoring made to your exact measurements. Crafted by master tailors with premium Italian and English wools from Scabal and Loro Piana.
               </p>
 
               {/* Action Buttons: Liquid Border Shimmer on Hover */}
@@ -280,9 +280,9 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
                 transition={{ duration: 0.8, delay: 0.45 }}
                 className="pt-6 border-t border-[#262626] grid grid-cols-3 gap-6 max-w-lg"
               >
-                <MetricCounter target={40} suffix="+" label="Anatomy Points" />
-                <MetricCounter target={100} suffix="%" label="Horsehair Canvas" />
-                <MetricCounter target={3} suffix="-Stage" label="Fitting Cycle" />
+                <MetricCounter target={40} suffix="+" label="Body Measurements" />
+                <MetricCounter target={100} suffix="%" label="Hand-Stitched Canvas" />
+                <MetricCounter target={3} suffix=" Stages" label="Custom Fittings" />
               </motion.div>
             </div>
 
@@ -306,26 +306,26 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
           <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
             
             <div className="group p-8 rounded-2xl bg-[#0d0d0d] border border-[#262626] hover:border-[#3a3a3a] transition-all duration-500 space-y-4 hover:-translate-y-1">
-              <span className="font-mono text-xs text-gold uppercase tracking-[0.25em]">01 / Precision</span>
-              <h3 className="text-xl font-serif text-white tracking-wide group-hover:text-gold transition-colors">Anatomical Draft</h3>
+              <span className="font-mono text-xs text-gold uppercase tracking-[0.25em]">01 / Perfect Fit</span>
+              <h3 className="text-xl font-serif text-white tracking-wide group-hover:text-gold transition-colors">Custom Paper Pattern</h3>
               <p className="text-[#999999] text-sm leading-relaxed font-light">
-                Every pattern is drafted individually to accommodate natural shoulder slope, spinal arch, and fluid kinetic movement.
+                Each suit begins with an individual pattern hand-drafted specifically for your posture, shoulders, and natural movement.
               </p>
             </div>
 
             <div className="group p-8 rounded-2xl bg-[#0d0d0d] border border-[#262626] hover:border-[#3a3a3a] transition-all duration-500 space-y-4 hover:-translate-y-1">
-              <span className="font-mono text-xs text-gold uppercase tracking-[0.25em]">02 / Structure</span>
-              <h3 className="text-xl font-serif text-white tracking-wide group-hover:text-gold transition-colors">Floating Horsehair</h3>
+              <span className="font-mono text-xs text-gold uppercase tracking-[0.25em]">02 / Durability</span>
+              <h3 className="text-xl font-serif text-white tracking-wide group-hover:text-gold transition-colors">Full-Canvas Structure</h3>
               <p className="text-[#999999] text-sm leading-relaxed font-light">
-                Full-canvas interior construction pad-stitched by hand, moulding dynamically to the wearer over decades of use.
+                Constructed with natural floating canvas stitched by hand, allowing the jacket to comfortably shape to your body over time.
               </p>
             </div>
 
             <div className="group p-8 rounded-2xl bg-[#0d0d0d] border border-[#262626] hover:border-[#3a3a3a] transition-all duration-500 space-y-4 hover:-translate-y-1">
               <span className="font-mono text-xs text-gold uppercase tracking-[0.25em]">03 / Materials</span>
-              <h3 className="text-xl font-serif text-white tracking-wide group-hover:text-gold transition-colors">European Mills</h3>
+              <h3 className="text-xl font-serif text-white tracking-wide group-hover:text-gold transition-colors">World-Class Fabrics</h3>
               <p className="text-[#999999] text-sm leading-relaxed font-light">
-                Exclusively sourced Super 150s worsted wools, cashmere blends, and rare Indonesian hand-drawn silk batiks.
+                Carefully selected fine wools from renowned European mills, paired with authentic Indonesian hand-drawn silk batiks.
               </p>
             </div>
 
@@ -338,14 +338,14 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
-              <span className="text-gold text-xs font-mono tracking-[0.25em] uppercase">Permanent Collection</span>
-              <h2 className="text-3xl sm:text-5xl font-serif text-white mt-2">Selected Commissions</h2>
+              <span className="text-gold text-xs font-mono tracking-[0.25em] uppercase">Featured Work</span>
+              <h2 className="text-3xl sm:text-5xl font-serif text-white mt-2">Signature Pieces</h2>
             </div>
             <Link 
               href="/products" 
               className="inline-flex items-center gap-2 text-white hover:text-gold transition-colors font-mono text-xs uppercase tracking-[0.2em] pb-1 border-b border-[#3a3a3a] hover:border-gold"
             >
-              <span>Explore Archive</span>
+              <span>View All Collection</span>
               <ArrowRight size={14} />
             </Link>
           </div>
@@ -355,26 +355,26 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
               {
                 id: "commission-1",
                 slug: "jas-luxury",
-                name: "Jas Luxury Bespoke Tuxedo",
+                name: "Black Evening Tuxedo",
                 category: "SUITS",
                 image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
-                desc: "Barathea wool with satin grosgrain lapels and hand-sewn buttonholes.",
+                desc: "Classic dinner suit tailored with satin silk lapels and hand-sewn buttonholes.",
               },
               {
                 id: "commission-2",
                 slug: "batik-formal",
-                name: "Royal Batik Silk Canting",
+                name: "Hand-Drawn Silk Batik",
                 category: "BATIK",
                 image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=1000&auto=format&fit=crop",
-                desc: "Hand-drawn mulberry silk crafted with authentic wax canting.",
+                desc: "Authentic Indonesian silk shirt handcrafted using traditional beeswax techniques.",
               },
               {
                 id: "commission-3",
                 slug: "kemeja",
-                name: "Atelier Egyptian Cotton Shirt",
-                category: "SHIRTINGS",
+                name: "Custom Egyptian Cotton Shirt",
+                category: "SHIRTS",
                 image: "https://images.unsplash.com/photo-1603252109303-2751441dd157?q=80&w=1000&auto=format&fit=crop",
-                desc: "Crisp two-ply Giza cotton tailored with Australian mother-of-pearl buttons.",
+                desc: "Breathable fine cotton shirt finished with natural mother-of-pearl buttons.",
               },
             ].map((item, idx) => {
               const linkHref = item.slug ? `/products/${item.slug}` : "/products"
@@ -429,10 +429,10 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
             className="space-y-6"
           >
-            <span className="text-gold text-xs font-mono tracking-[0.25em] uppercase">Private Atelier Consultation</span>
+            <span className="text-gold text-xs font-mono tracking-[0.25em] uppercase">Private Consultation</span>
             <h2 className="text-3xl sm:text-5xl font-serif text-white">Experience Bespoke Tailoring</h2>
             <p className="text-[#999999] text-sm sm:text-base leading-relaxed font-light">
-              Book a private fitting session with our master tailor at the atelier or at your residence in Jakarta.
+              Book a private fitting session with our master tailor at our Jakarta atelier, or schedule a home fitting at your convenience.
             </p>
             <div className="pt-4">
               <Link href="/contact">
@@ -440,7 +440,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
                   size="lg" 
                   className="rounded-full bg-gold hover:bg-gold-light text-black font-serif text-xs font-bold uppercase tracking-[0.2em] px-8 h-13 shadow-[0_0_25px_rgba(212,155,53,0.3)] hover:shadow-[0_0_35px_rgba(212,155,53,0.5)] border-none cursor-pointer"
                 >
-                  <span>Reserve Appointment</span>
+                  <span>Book an Appointment</span>
                   <ArrowUpRight size={15} className="ml-1.5 stroke-[2]" />
                 </Button>
               </Link>

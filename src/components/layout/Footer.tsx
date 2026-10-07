@@ -21,17 +21,17 @@ export default function Footer() {
             </Link>
 
             <p className="text-sm text-[#999999] max-w-sm leading-relaxed font-light">
-              Architectural bespoke tailoring and artisanal savoir-faire. Engineered with hand-canvassed construction and prestigious European textiles.
+              Fine custom tailoring crafted with traditional hand-stitched canvas and premium European textiles.
             </p>
           </div>
 
           {/* Navigation */}
           <div className="space-y-4">
-            <h4 className="font-mono text-xs font-semibold tracking-[0.25em] uppercase text-white">Maison</h4>
+            <h4 className="font-mono text-xs font-semibold tracking-[0.25em] uppercase text-white">Menu</h4>
             <ul className="space-y-3 text-xs font-mono tracking-wider text-[#999999]">
-              <li><Link href="/" className="hover:text-white transition">MAISON</Link></li>
+              <li><Link href="/" className="hover:text-white transition">HOME</Link></li>
               <li><Link href="/products" className="hover:text-white transition">COLLECTION</Link></li>
-              <li><Link href="/about" className="hover:text-white transition">HERITAGE</Link></li>
+              <li><Link href="/about" className="hover:text-white transition">ABOUT</Link></li>
               <li><Link href="/lab-3d" className="hover:text-white transition">3D LAB</Link></li>
               <li><Link href="/contact" className="hover:text-white transition">APPOINTMENT</Link></li>
             </ul>

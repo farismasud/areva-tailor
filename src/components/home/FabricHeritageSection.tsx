@@ -8,30 +8,30 @@ import { Award, Compass, Feather, ShieldCheck } from "lucide-react"
 const fabrics = [
   {
     id: "scabal",
-    name: "Scabal of Savile Row",
-    origin: "Brussels & Huddersfield, UK",
+    name: "Scabal of London",
+    origin: "London & West Yorkshire, England",
     type: "Super 150s - 180s Wool & Cashmere",
-    desc: "Renowned globally as the pinnacle of English suiting textiles. Weave density that holds razor-sharp creasing and natural water-repellent drape.",
+    desc: "Internationally celebrated as the benchmark for luxury English suiting. Dense, durable weave that keeps crisp lines and drapes naturally.",
     image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?q=80&w=1000&auto=format&fit=crop",
-    traits: ["Pure Natural Luster", "Resilient Recovery", "Breathable Four-Season"],
+    traits: ["Natural Sheen", "Wrinkle Resistant", "Four-Season Comfort"],
   },
   {
     id: "loro-piana",
     name: "Loro Piana Australis",
-    origin: "Quarona, Northern Italy",
-    type: "Super 150s Tasmanian Merino",
-    desc: "Spun from select ultra-fine Australian Merino fleece. Exceptionally soft hand-feel combined with Italian fluid kinetic drape.",
+    origin: "Piedmont, Northern Italy",
+    type: "Super 150s Australian Merino",
+    desc: "Spun from select ultra-fine merino wool fibers. Exceptionally light and soft to the touch with effortless Italian elegance.",
     image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop",
-    traits: ["Featherweight Softness", "Deep Chroma Dyeing", "Thermoclimatic Balance"],
+    traits: ["Ultra-Soft Feel", "Rich Color Depth", "Naturally Breathable"],
   },
   {
     id: "batik-sutra",
-    name: "Atelier Hand-Drawn Batik Silk",
-    origin: "Pekalongan & Solo, Indonesia",
-    type: "100% Pure Mulberry Silk Crepe",
-    desc: "Handcrafted using traditional hot beeswax canting techniques over weeks. Custom tailored as bespoke silk shirtings or opulent inner jacket linings.",
+    name: "Hand-Drawn Silk Batik",
+    origin: "Central Java, Indonesia",
+    type: "100% Pure Mulberry Silk",
+    desc: "Created by skilled artisans using traditional hot wax canting methods. Tailored into bespoke silk shirts or statement suit linings.",
     image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop",
-    traits: ["Artisanal Canting Craft", "Natural Plant Dyes", "Sartorial Heritage Fusion"],
+    traits: ["Hand-Drawn Canting", "Pure Natural Dyes", "Indonesian Heritage"],
   },
 ]
 
@@ -45,13 +45,13 @@ export function FabricHeritageSection() {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
           <span className="font-mono text-xs text-gold uppercase tracking-[0.3em]">
-            Prestigious Textiles
+            Premium Fabrics
           </span>
           <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-tight">
-            Curated Mill Partners
+            World-Renowned Mills
           </h2>
           <p className="text-sm text-[#999999] font-light leading-relaxed">
-            A bespoke suit is only as dignified as the wool from which it is drafted. We maintain direct allocations with the world&apos;s oldest weaving mills.
+            A great suit starts with exceptional cloth. We source our materials directly from historic weaving houses in Italy, England, and Indonesia.
           </p>
         </div>
 

@@ -6,20 +6,20 @@ import { Plus, Minus } from "lucide-react"
 
 const faqs = [
   {
-    q: "How does bespoke tailoring differ from made-to-measure (MTM)?",
-    a: "Made-to-measure alters an existing pre-graded standard block pattern on a computer. Authentic bespoke begins with an entirely blank sheet of card stock, drafted individually around your posture, shoulder drop, and spinal curve, followed by 3 manual fitting stages with floating horsehair canvas.",
+    q: "What is the difference between bespoke and made-to-measure?",
+    a: "Made-to-measure adjusts an existing standard template on a computer. Authentic bespoke starts entirely from scratch with a brand-new paper pattern drafted around your posture and build, followed by multiple fitting sessions with floating natural horsehair canvas.",
   },
   {
-    q: "How many fittings are required, and how long does a commission take?",
-    a: "A classic bespoke commission requires 3 fittings: the Toile/Baste fitting (skeleton prototype), Forward fitting (structural alignment), and Final inspection. The entire artisanal journey spans 4 to 6 weeks to allow the natural textiles to rest between pressing cycles.",
+    q: "How many fittings are needed, and how long does it take?",
+    a: "A typical bespoke commission takes 3 fittings: the initial measurement and baste fitting (white thread prototype), the structure fitting, and the final try-on. The entire process takes approximately 4 to 5 weeks.",
   },
   {
-    q: "Can I bring my own fabric or rare Indonesian batik?",
-    a: "Certainly. Our master artisans frequently craft bespoke three-piece suits with customer-supplied royal batik silks as artistic inner linings, or draft complete full-canvassed bespoke batik formal shirts.",
+    q: "Can I bring my own fabric or custom batik?",
+    a: "Yes. Our tailors regularly work with customer-provided fabrics, transforming rare heirloom batiks into tailored long-sleeve shirts or signature silk suit jacket linings.",
   },
   {
-    q: "Do you offer private consultations at my residence or hotel?",
-    a: "Yes. Our master tailor provides private concierge fittings across the Greater Jakarta area for clients requiring utmost discretion.",
+    q: "Do you offer private appointments at my office or home?",
+    a: "Yes. We offer discreet concierge fitting services throughout Jakarta for clients who prefer private consultations at their home, office, or hotel.",
   },
 ]
 
@@ -33,10 +33,10 @@ export function BespokeFaqSection() {
         {/* Header */}
         <div className="text-center mb-16 space-y-3">
           <span className="font-mono text-xs text-gold uppercase tracking-[0.3em]">
-            Client Guidance
+            Got Questions?
           </span>
           <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-tight">
-            Frequently Inquired
+            Frequently Asked Questions
           </h2>
         </div>
 

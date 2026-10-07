@@ -7,49 +7,49 @@ import { Compass, Sparkles, Scissors, Layers, CheckCircle2 } from "lucide-react"
 const stages = [
   {
     step: "01",
-    title: "Anatomical Drafting & Consultation",
+    title: "Measurements & Consultation",
     timeframe: "Week 1",
-    summary: "Over 40 body measurement vectors captured to create your unique individual paper pattern.",
+    summary: "Over 40 precise body measurements taken to create a unique paper pattern made solely for you.",
     details: [
-      "Posture, shoulder inclination, and kinetic drape analysis",
-      "Textile selection from Scabal, Loro Piana, and Holland & Sherry",
-      "Individual pattern drafted from scratch on virgin card stock",
+      "In-depth analysis of posture, shoulder slope, and natural movement",
+      "Fabric selection from renowned mills like Scabal and Loro Piana",
+      "Custom paper pattern hand-drafted from scratch",
     ],
     icon: Compass,
   },
   {
     step: "02",
-    title: "Baste Fitting (Toile Prototype)",
+    title: "First Fitting (Baste Skeleton)",
     timeframe: "Week 2 - 3",
-    summary: "The suit is temporarily basted with white linen thread, sans lapels or linings, to sculpt posture.",
+    summary: "A preliminary prototype basted with white thread, allowing us to sculpt the suit directly on your body.",
     details: [
-      "Assessment of chest suppression, balance, and sleeve pitch",
-      "Deconstruction and precision re-cutting of pattern pieces",
-      "Floating natural horsehair canvas installed by hand",
+      "Checking chest balance, back suppression, and sleeve position",
+      "Deconstruction and exact re-cutting to refine your fit",
+      "Installation of natural floating horsehair canvas",
     ],
     icon: Scissors,
   },
   {
     step: "03",
-    title: "Forward Fitting (Structural Finish)",
+    title: "Second Fitting (Structure & Detail)",
     timeframe: "Week 4",
-    summary: "Pockets set, facings applied, and shoulder structure locked for final aesthetic balance.",
+    summary: "Pockets, linings, and lapels are assembled to lock in the final silhouette and comfort.",
     details: [
-      "Trouser break and collar hug fine-tuned to within 2 millimeters",
-      "Milanese buttonholes hand-sewn with pure silk gimp thread",
-      "Real horn buttons affixed with reinforced cross-stitching",
+      "Fine-tuning trouser length and jacket collar hug",
+      "Hand-stitched buttonholes crafted with silk thread",
+      "Genuine horn buttons securely attached by hand",
     ],
     icon: Layers,
   },
   {
     step: "04",
-    title: "Final Inspection & Archive Delivery",
+    title: "Final Try-On & Delivery",
     timeframe: "Week 5",
-    summary: "Garment hand-pressed on curved wooden bucks and archived in a breathable cedar garment carrier.",
+    summary: "Final steam-pressing and inspection before your suit is safely packaged for handover.",
     details: [
-      "Full steam shaping to set the organic chest drape permanently",
-      "Digital measurement archive stored for lifetime re-orders",
-      "Handover with bespoke hanger and silk dust protector",
+      "Hand-pressed to lock in the three-dimensional chest shape",
+      "Your measurements archived for effortless future commissions",
+      "Delivered with a premium wooden hanger and breathable suit carrier",
     ],
     icon: Sparkles,
   },
@@ -69,14 +69,14 @@ export function BespokeProcessSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="space-y-3">
             <span className="font-mono text-xs text-gold uppercase tracking-[0.3em]">
-              The Sartorial Protocol
+              The Craft Process
             </span>
             <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-tight">
-              Four Stages of Perfection
+              How We Create Your Suit
             </h2>
           </div>
           <p className="text-sm text-[#999999] max-w-md font-light leading-relaxed">
-            Unlike industrial made-to-measure, authentic bespoke is an iterative sculptural journey. No garment leaves our atelier without three rounds of manual fitting.
+            True bespoke tailoring is a personalized craft. Every suit goes through multiple stages of hand-fitting to ensure unmatched comfort and elegance.
           </p>
         </div>
 
