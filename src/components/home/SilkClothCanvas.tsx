@@ -35,16 +35,16 @@ export function SilkClothCanvas() {
     container.appendChild(renderer.domElement)
 
     // Cloth Plane Geometry (curved silk sheet)
-    const geometry = new THREE.PlaneGeometry(12, 8, 80, 60)
+    const geometry = new THREE.PlaneGeometry(16, 10, 80, 60)
 
     // Custom Shader Material for Silk Sheen & Gold Highlights
     const customMaterial = new THREE.ShaderMaterial({
       uniforms: {
         uTime: { value: 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
-        uColorDark: { value: new THREE.Color("#0d0d0d") },
-        uColorSilk: { value: new THREE.Color("#1f1a14") },
-        uColorGold: { value: new THREE.Color("#d49b35") },
+        uColorDark: { value: new THREE.Color("#080808") },
+        uColorSilk: { value: new THREE.Color("#18140e") },
+        uColorGold: { value: new THREE.Color("#e5a93c") },
       },
       vertexShader: `
         uniform float uTime;
@@ -57,14 +57,14 @@ export function SilkClothCanvas() {
           vUv = uv;
           vec3 pos = position;
           
-          // Organic undulating silk waves
-          float wave1 = sin(pos.x * 0.8 + uTime * 0.9) * 0.45;
-          float wave2 = cos(pos.y * 1.2 + uTime * 0.7) * 0.35;
-          float wave3 = sin((pos.x + pos.y) * 1.5 + uTime * 0.5) * 0.25;
+          // Organic undulating silk waves with more pronounced folds
+          float wave1 = sin(pos.x * 0.9 + uTime * 1.1) * 0.65;
+          float wave2 = cos(pos.y * 1.3 + uTime * 0.9) * 0.55;
+          float wave3 = sin((pos.x + pos.y) * 1.6 + uTime * 0.7) * 0.35;
           
           // Mouse interaction warp
-          float mouseDist = length(pos.xy - vec2(uMouse.x * 5.0, uMouse.y * 3.0));
-          float mouseInfluence = smoothstep(3.5, 0.0, mouseDist) * 0.4;
+          float mouseDist = length(pos.xy - vec2(uMouse.x * 6.0, uMouse.y * 4.0));
+          float mouseInfluence = smoothstep(4.0, 0.0, mouseDist) * 0.6;
           
           float elevation = wave1 + wave2 + wave3 + mouseInfluence;
           pos.z += elevation;
@@ -84,25 +84,24 @@ export function SilkClothCanvas() {
         varying float vElevation;
 
         void main() {
-          // Micro-thread grid weave
-          float weaveX = step(0.5, fract(vUv.x * 120.0));
-          float weaveY = step(0.5, fract(vUv.y * 120.0));
-          float weave = mix(0.92, 1.0, abs(weaveX - weaveY));
-
           // Rim and specular lighting simulating silk luster
-          vec3 lightDir = normalize(vec3(0.5, 0.8, 1.0));
+          vec3 lightDir = normalize(vec3(0.6, 0.9, 1.2));
           float diff = max(dot(normalize(vNormal), lightDir), 0.0);
-          float fresnel = pow(1.0 - abs(dot(normalize(vNormal), vec3(0.0, 0.0, 1.0))), 2.5);
+          float fresnel = pow(1.0 - abs(dot(normalize(vNormal), vec3(0.0, 0.0, 1.0))), 1.8);
 
-          // Blend from dark fabric into warm bronze-gold crests
-          vec3 baseColor = mix(uColorDark, uColorSilk, diff * 0.8);
-          vec3 goldHighlights = uColorGold * (fresnel * 0.85 + max(vElevation * 0.35, 0.0));
+          // Subtle textile lines (subtle silk weave lines)
+          float threadPattern = sin(vUv.x * 160.0) * sin(vUv.y * 160.0);
+          float subtleThread = smoothstep(-0.2, 0.8, threadPattern) * 0.15;
+
+          // Blend from deep dark fabric into warm bronze-gold crests
+          vec3 baseColor = mix(uColorDark, uColorSilk, diff * 0.9);
+          vec3 goldHighlights = uColorGold * (fresnel * 1.5 + max(vElevation * 0.8, 0.0) + subtleThread);
           
-          vec3 finalColor = (baseColor + goldHighlights) * weave;
+          vec3 finalColor = baseColor + goldHighlights;
           
           // Soft edge fade
-          float alpha = smoothstep(0.0, 0.15, vUv.x) * smoothstep(1.0, 0.85, vUv.x) *
-                        smoothstep(0.0, 0.15, vUv.y) * smoothstep(1.0, 0.85, vUv.y) * 0.85;
+          float alpha = smoothstep(0.0, 0.12, vUv.x) * smoothstep(1.0, 0.88, vUv.x) *
+                        smoothstep(0.0, 0.12, vUv.y) * smoothstep(1.0, 0.88, vUv.y) * 0.95;
 
           gl_FragColor = vec4(finalColor, alpha);
         }
@@ -177,7 +176,7 @@ export function SilkClothCanvas() {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-90"
+      className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-100"
       aria-hidden="true"
     />
   )

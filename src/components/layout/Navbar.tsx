@@ -45,15 +45,15 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* RIGHT ACTION: Pill Button with Hairline Border */}
+        {/* RIGHT ACTION: Luxury Pill Button */}
         <div className="flex items-center gap-4">
           <Link href="/contact" className="hidden sm:inline-block">
             <Button 
               size="sm" 
-              className="rounded-full bg-transparent text-white hover:bg-white hover:text-black border border-[#3a3a3a] hover:border-white text-[11px] font-mono uppercase tracking-[0.2em] px-5 h-9 transition-all duration-300 cursor-pointer shadow-none"
+              className="rounded-full bg-gold/10 hover:bg-gold text-gold hover:text-black border border-gold/40 hover:border-gold text-[11px] font-serif font-bold uppercase tracking-[0.2em] px-6 h-9 transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(212,155,53,0.15)] hover:shadow-[0_0_20px_rgba(212,155,53,0.35)]"
             >
               <span>RESERVE</span>
-              <ArrowUpRight size={12} className="ml-1 opacity-70" />
+              <ArrowUpRight size={13} className="ml-1.5 stroke-[2]" />
             </Button>
           </Link>
           
@@ -89,7 +89,7 @@ export default function Navbar() {
           ))}
           <div className="pt-2">
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-              <Button className="w-full bg-white text-black hover:bg-neutral-200 rounded-full text-xs font-mono tracking-[0.2em] uppercase h-11">
+              <Button className="w-full bg-gold text-black hover:bg-gold-light rounded-full text-xs font-serif font-bold tracking-[0.2em] uppercase h-11 border-none shadow-[0_0_20px_rgba(212,155,53,0.3)]">
                 RESERVE APPOINTMENT
               </Button>
             </Link>
