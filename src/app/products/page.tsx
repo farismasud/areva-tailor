@@ -3,26 +3,67 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
-export const revalidate = 3600 
+export const revalidate = 3600
 
-export default async function ProductsPage() {
-  const { data: products } = await supabase
+interface ProductsPageProps {
+  searchParams: Promise<{ category?: string }>
+}
+
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const { category } = await searchParams
+  
+  let query = supabase
     .from('products')
     .select('*')
     .eq('is_active', true)
     .order('id', { ascending: false })
+
+  if (category && category !== 'all') {
+    query = query.ilike('category', `%${category}%`)
+  }
+
+  const { data: products } = await query
+
+  const categories = [
+    { label: "All Collections", value: "all" },
+    { label: "Bespoke Suit", value: "jas" },
+    { label: "Silk Batik", value: "batik" },
+    { label: "Tailored Shirt", value: "kemeja" },
+  ]
+
+  const activeCategory = category || "all"
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white py-20 md:py-32">
       <div className="container px-4 md:px-6 mx-auto">
         
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
+        <div className="text-center mb-12 space-y-4">
           <span className="text-gold text-xs tracking-[0.3em] uppercase">The Collection</span>
           <h1 className="text-4xl md:text-6xl font-serif font-normal tracking-wide">
             MASTERPIECES
           </h1>
           <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-6"></div>
+        </div>
+
+        {/* Category Filter Bar */}
+        <div className="flex items-center justify-center gap-2 md:gap-4 flex-wrap mb-16">
+          {categories.map((cat) => {
+            const isSelected = activeCategory.toLowerCase() === cat.value.toLowerCase()
+            return (
+              <Link
+                key={cat.value}
+                href={cat.value === "all" ? "/products" : `/products?category=${cat.value}`}
+                className={`px-5 py-2.5 rounded-full text-xs tracking-widest uppercase transition-all duration-300 border ${
+                  isSelected
+                    ? "bg-gold text-black border-gold font-semibold shadow-[0_0_20px_rgba(212,155,53,0.3)]"
+                    : "bg-white/5 text-neutral-400 border-white/10 hover:border-gold/40 hover:text-white"
+                }`}
+              >
+                {cat.label}
+              </Link>
+            )
+          })}
         </div>
 
         {/* GRID MAGAZINE STYLE */}

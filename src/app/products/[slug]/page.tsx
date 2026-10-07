@@ -12,11 +12,32 @@ export async function generateStaticParams() {
   return products?.map(({ slug }) => ({ slug })) || []
 }
 
-export default async function ProductDetail({ params }: { params: { slug: string } }) {
+interface ProductDetailProps {
+  params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: ProductDetailProps) {
+  const { slug } = await params
+  const { data: product } = await supabase
+    .from('products')
+    .select('name, description')
+    .eq('slug', slug)
+    .single()
+
+  if (!product) return { title: 'Product Not Found | Areva Tailor' }
+
+  return {
+    title: `${product.name} | Areva Tailor Bespoke`,
+    description: product.description || 'Exclusive handcrafted bespoke tailoring by Areva Tailor Jakarta.',
+  }
+}
+
+export default async function ProductDetail({ params }: ProductDetailProps) {
+  const { slug } = await params
   const { data: product } = await supabase
     .from('products')
     .select('*')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .single()
 
   if (!product) notFound()

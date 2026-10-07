@@ -7,8 +7,42 @@ import { Textarea } from "@/components/ui/textarea"
 import { MapPin, Phone, Mail, Check } from "lucide-react"
 
 export default function ContactPage() {
-  // State buat nyimpen layanan yang dipilih
   const [selectedService, setSelectedService] = useState("bespoke-suit")
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [preferredDate, setPreferredDate] = useState("")
+  const [preferredTime, setPreferredTime] = useState("")
+  const [notes, setNotes] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!name || !phone) {
+      setErrorMessage("Nama dan nomor WhatsApp wajib diisi.")
+      return
+    }
+
+    setLoading(true)
+    setErrorMessage(null)
+
+    // Format pesan WhatsApp agar langsung terhubung ke admin
+    const waText = encodeURIComponent(
+      `Halo Atelier Areva Tailor, saya ingin reservasi konsultasi:\n\n` +
+      `• Nama: ${name}\n` +
+      `• Layanan: ${selectedService}\n` +
+      `• Tanggal: ${preferredDate || "Fleksibel"}\n` +
+      `• Waktu: ${preferredTime || "Fleksibel"}\n` +
+      `• Catatan: ${notes || "-"}\n\n` +
+      `Mohon konfirmasi jadwal temu ukur. Terima kasih!`
+    )
+
+    // Buka WhatsApp admin
+    window.open(`https://wa.me/6281234567890?text=${waText}`, "_blank")
+    setSubmitted(true)
+    setLoading(false)
+  }
 
   const services = [
     { id: "bespoke-suit", label: "Bespoke Suit" },
@@ -93,7 +127,17 @@ export default function ContactPage() {
           <div className="lg:col-span-8">
             <div className="bg-gradient-to-br from-neutral-900 to-black p-8 md:p-10 rounded-2xl border border-gold/30 shadow-[0_0_40px_rgba(212,155,53,0.1)]">
                
-               <form className="space-y-8">
+               <form onSubmit={handleSubmit} className="space-y-8">
+                  {errorMessage && (
+                    <div className="p-3 bg-red-500/10 border border-red-500/30 text-red-300 text-xs rounded-lg">
+                      {errorMessage}
+                    </div>
+                  )}
+                  {submitted && (
+                    <div className="p-4 bg-gold/10 border border-gold/40 text-gold text-sm rounded-lg flex items-center gap-2">
+                      <Check size={16} /> Permintaan reservasi sedang diteruskan ke WhatsApp Atelier.
+                    </div>
+                  )}
                   {/* Service Selection */}
                   <div>
                     <label className="text-xs uppercase tracking-widest text-neutral-400 mb-4 block">I am interested in</label>
@@ -122,33 +166,63 @@ export default function ContactPage() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-xs uppercase tracking-widest text-neutral-400 ml-1">Name</label>
-                      <Input placeholder="Your Full Name" className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 placeholder:text-neutral-600 transition-all" />
+                      <Input 
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Your Full Name" 
+                        required
+                        className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 placeholder:text-neutral-600 transition-all" 
+                      />
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs uppercase tracking-widest text-neutral-400 ml-1">Phone (WhatsApp)</label>
-                      <Input placeholder="0812..." className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 placeholder:text-neutral-600 transition-all" />
+                      <Input 
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="0812..." 
+                        required
+                        className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 placeholder:text-neutral-600 transition-all" 
+                      />
                     </div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                        <label className="text-xs uppercase tracking-widest text-neutral-400 ml-1">Preferred Date</label>
-                       {/* Input Type Date biar muncul kalender native */}
-                       <Input type="date" className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 transition-all [color-scheme:dark]" />
+                       <Input 
+                         type="date" 
+                         value={preferredDate}
+                         onChange={(e) => setPreferredDate(e.target.value)}
+                         className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 transition-all [color-scheme:dark]" 
+                       />
                     </div>
                     <div className="space-y-2">
                        <label className="text-xs uppercase tracking-widest text-neutral-400 ml-1">Time (Approx)</label>
-                       <Input type="time" className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 transition-all [color-scheme:dark]" />
+                       <Input 
+                         type="time" 
+                         value={preferredTime}
+                         onChange={(e) => setPreferredTime(e.target.value)}
+                         className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 transition-all [color-scheme:dark]" 
+                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest text-neutral-400 ml-1">Additional Notes</label>
-                    <Textarea placeholder="Tell us more about your needs..." className="bg-white/5 border-white/10 min-h-[120px] rounded-lg text-white focus:border-gold focus:ring-0 placeholder:text-neutral-600 transition-all resize-none" />
+                    <Textarea 
+                      value={notes}
+                      onChange={(e) => setNotes(e.target.value)}
+                      placeholder="Tell us more about your needs..." 
+                      className="bg-white/5 border-white/10 min-h-[120px] rounded-lg text-white focus:border-gold focus:ring-0 placeholder:text-neutral-600 transition-all resize-none" 
+                    />
                   </div>
 
-                  <Button className="w-full bg-gold hover:bg-gold-light text-black font-bold tracking-widest h-14 rounded-lg shadow-[0_0_20px_rgba(212,155,53,0.2)] hover:shadow-[0_0_30px_rgba(212,155,53,0.4)] transition-all text-lg">
-                    CONFIRM BOOKING
+                  <Button 
+                    type="submit" 
+                    disabled={loading}
+                    className="w-full bg-gold hover:bg-gold-light text-black font-bold tracking-widest h-14 rounded-lg shadow-[0_0_20px_rgba(212,155,53,0.2)] hover:shadow-[0_0_30px_rgba(212,155,53,0.4)] transition-all text-lg cursor-pointer"
+                  >
+                    {loading ? "CONNECTING..." : "CONFIRM BOOKING VIA WHATSAPP"}
                   </Button>
 
                   <p className="text-center text-xs text-neutral-500 pt-4">
