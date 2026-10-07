@@ -135,33 +135,39 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
       {/* === ARCHITECTURAL PRINCIPLES (Monochrome Hairlines) === */}
       <section className="py-24 bg-[#080808] border-b border-[#262626]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+            className="grid md:grid-cols-3 gap-8 lg:gap-12"
+          >
             
-            <div className="p-8 rounded-xl bg-[#0d0d0d] border border-[#262626] space-y-4">
+            <div className="group p-8 rounded-2xl bg-[#0d0d0d] border border-[#262626] hover:border-[#3a3a3a] transition-all duration-500 space-y-4 hover:-translate-y-1">
               <span className="font-mono text-xs text-gold uppercase tracking-[0.25em]">01 / Precision</span>
-              <h3 className="text-xl font-serif text-white tracking-wide">Anatomical Draft</h3>
+              <h3 className="text-xl font-serif text-white tracking-wide group-hover:text-gold transition-colors">Anatomical Draft</h3>
               <p className="text-[#999999] text-sm leading-relaxed font-light">
                 Every pattern is drafted individually to accommodate natural shoulder slope, spinal arch, and fluid kinetic movement.
               </p>
             </div>
 
-            <div className="p-8 rounded-xl bg-[#0d0d0d] border border-[#262626] space-y-4">
+            <div className="group p-8 rounded-2xl bg-[#0d0d0d] border border-[#262626] hover:border-[#3a3a3a] transition-all duration-500 space-y-4 hover:-translate-y-1">
               <span className="font-mono text-xs text-gold uppercase tracking-[0.25em]">02 / Structure</span>
-              <h3 className="text-xl font-serif text-white tracking-wide">Floating Horsehair</h3>
+              <h3 className="text-xl font-serif text-white tracking-wide group-hover:text-gold transition-colors">Floating Horsehair</h3>
               <p className="text-[#999999] text-sm leading-relaxed font-light">
                 Full-canvas interior construction pad-stitched by hand, moulding dynamically to the wearer over decades of use.
               </p>
             </div>
 
-            <div className="p-8 rounded-xl bg-[#0d0d0d] border border-[#262626] space-y-4">
+            <div className="group p-8 rounded-2xl bg-[#0d0d0d] border border-[#262626] hover:border-[#3a3a3a] transition-all duration-500 space-y-4 hover:-translate-y-1">
               <span className="font-mono text-xs text-gold uppercase tracking-[0.25em]">03 / Materials</span>
-              <h3 className="text-xl font-serif text-white tracking-wide">European Mills</h3>
+              <h3 className="text-xl font-serif text-white tracking-wide group-hover:text-gold transition-colors">European Mills</h3>
               <p className="text-[#999999] text-sm leading-relaxed font-light">
                 Exclusively sourced Super 150s worsted wools, cashmere blends, and rare Indonesian hand-drawn silk batiks.
               </p>
             </div>
 
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -182,66 +188,87 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredProducts?.map((product) => (
-              <Link 
-                href={`/products/${product.slug}`} 
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            {featuredProducts?.map((product, idx) => (
+              <motion.div
                 key={product.id}
-                className="group block"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.23, 1, 0.32, 1] }}
               >
-                <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0d0d0d] border border-[#262626] group-hover:border-[#3a3a3a] transition-all duration-500">
-                  {product.image_url ? (
-                    <Image 
-                      src={product.image_url} 
-                      alt={product.name} 
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full text-neutral-600 font-mono text-xs">NO PREVIEW</div>
-                  )}
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/30 to-transparent" />
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6 space-y-1">
-                    {product.category && (
-                      <span className="text-gold text-[10px] font-mono tracking-[0.25em] uppercase">
-                        {product.category}
-                      </span>
+                <Link 
+                  href={`/products/${product.slug}`} 
+                  className="group block"
+                >
+                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#0d0d0d] border border-[#262626] group-hover:border-gold/50 transition-all duration-500 shadow-xl">
+                    {product.image_url ? (
+                      <Image 
+                        src={product.image_url} 
+                        alt={product.name} 
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-neutral-600 font-mono text-xs">NO PREVIEW</div>
                     )}
-                    <h3 className="text-xl font-serif text-white group-hover:text-gold transition-colors">
-                      {product.name}
-                    </h3>
-                    <p className="text-xs text-[#999999] line-clamp-1 font-light">
-                      {product.description || "Bespoke handcrafted commission."}
-                    </p>
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/30 to-transparent" />
+
+                    <div className="absolute bottom-0 left-0 right-0 p-6 space-y-1">
+                      {product.category && (
+                        <span className="text-gold text-[10px] font-mono tracking-[0.25em] uppercase">
+                          {product.category}
+                        </span>
+                      )}
+                      <h3 className="text-xl font-serif text-white group-hover:text-gold transition-colors">
+                        {product.name}
+                      </h3>
+                      <p className="text-xs text-[#999999] line-clamp-1 font-light">
+                        {product.description || "Bespoke handcrafted commission."}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* === PRIVATE ATELIER CONSULTATION CALLOUT === */}
       <section className="py-24 bg-[#080808] relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 text-center relative z-10 space-y-6 max-w-2xl">
-          <span className="text-gold text-xs font-mono tracking-[0.25em] uppercase">Private Atelier Consultation</span>
-          <h2 className="text-3xl sm:text-5xl font-serif text-white">Experience Bespoke Tailoring</h2>
-          <p className="text-[#999999] text-sm sm:text-base leading-relaxed font-light">
-            Book a private fitting session with our master tailor at the atelier or at your residence in Jakarta.
-          </p>
-          <div className="pt-4">
-            <Link href="/contact">
-              <Button 
-                size="lg" 
-                className="rounded-full bg-white hover:bg-neutral-200 text-black font-mono text-xs uppercase tracking-[0.2em] px-8 h-13 shadow-none border border-white cursor-pointer"
-              >
-                <span>Reserve Appointment</span>
-                <ArrowUpRight size={14} className="ml-1 opacity-70" />
-              </Button>
-            </Link>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+            className="space-y-6"
+          >
+            <span className="text-gold text-xs font-mono tracking-[0.25em] uppercase">Private Atelier Consultation</span>
+            <h2 className="text-3xl sm:text-5xl font-serif text-white">Experience Bespoke Tailoring</h2>
+            <p className="text-[#999999] text-sm sm:text-base leading-relaxed font-light">
+              Book a private fitting session with our master tailor at the atelier or at your residence in Jakarta.
+            </p>
+            <div className="pt-4">
+              <Link href="/contact">
+                <Button 
+                  size="lg" 
+                  className="rounded-full bg-gold hover:bg-gold-light text-black font-serif text-xs font-bold uppercase tracking-[0.2em] px-8 h-13 shadow-[0_0_25px_rgba(212,155,53,0.3)] hover:shadow-[0_0_35px_rgba(212,155,53,0.5)] border-none cursor-pointer"
+                >
+                  <span>Reserve Appointment</span>
+                  <ArrowUpRight size={15} className="ml-1.5 stroke-[2]" />
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
