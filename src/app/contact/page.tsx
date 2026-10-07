@@ -27,6 +27,24 @@ export default function ContactPage() {
     setLoading(true)
     setErrorMessage(null)
 
+    // Save appointment record via Next.js API route to Supabase
+    try {
+      await fetch("/api/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          phone,
+          service_type: selectedService,
+          preferred_date: preferredDate || null,
+          preferred_time: preferredTime || null,
+          notes: notes || null,
+        }),
+      })
+    } catch (err) {
+      console.warn("Direct DB sync background notice:", err)
+    }
+
     // Format WhatsApp message in English
     const waText = encodeURIComponent(
       `Hello Areva Atelier, I would like to schedule a private fitting appointment:\n\n` +
@@ -52,11 +70,11 @@ export default function ContactPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white py-20 relative overflow-hidden">
+    <div className="min-h-screen bg-[#050505] text-white py-20 relative overflow-hidden">
       
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
       <div className="container px-4 md:px-6 mx-auto relative z-10">
         
@@ -72,15 +90,15 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           
           {/* KOLOM KIRI: Contact Info (Lebar 4 kolom) */}
-          <div className="lg:col-span-4 space-y-8 bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
+          <div className="lg:col-span-4 space-y-8 bg-[#0d0d0d] p-8 rounded-2xl border border-[#262626] backdrop-blur-sm">
              <div className="space-y-6">
                <div className="flex items-start gap-4">
-                 <div className="p-3 bg-black/50 rounded-lg text-gold border border-white/10">
+                 <div className="p-3 bg-black/50 rounded-lg text-gold border border-[#262626]">
                     <MapPin size={20} />
                  </div>
                  <div>
-                   <h3 className="font-serif text-lg mb-1">Our Atelier</h3>
-                   <p className="text-sm text-neutral-400 leading-relaxed">
+                   <h3 className="font-serif text-lg mb-1 text-white">Our Atelier</h3>
+                   <p className="text-sm text-[#999999] leading-relaxed">
                      Jl. Jahit Presisi No. 123<br/>
                      Kebayoran Baru, Jakarta Selatan<br/>
                      DKI Jakarta 12150
@@ -89,23 +107,23 @@ export default function ContactPage() {
                </div>
 
                <div className="flex items-start gap-4">
-                 <div className="p-3 bg-black/50 rounded-lg text-gold border border-white/10">
+                 <div className="p-3 bg-black/50 rounded-lg text-gold border border-[#262626]">
                     <Phone size={20} />
                  </div>
                  <div>
-                   <h3 className="font-serif text-lg mb-1">Direct Line</h3>
-                   <p className="text-sm text-neutral-400">+62 812-3456-7890</p>
-                   <p className="text-xs text-neutral-500 mt-1">Available 09:00 - 18:00</p>
+                   <h3 className="font-serif text-lg mb-1 text-white">Direct Line</h3>
+                   <p className="text-sm text-[#999999]">+62 812-3456-7890</p>
+                   <p className="text-xs text-[#666666] mt-1 font-mono">Available 09:00 - 18:00</p>
                  </div>
                </div>
 
                <div className="flex items-start gap-4">
-                 <div className="p-3 bg-black/50 rounded-lg text-gold border border-white/10">
+                 <div className="p-3 bg-black/50 rounded-lg text-gold border border-[#262626]">
                     <Mail size={20} />
                  </div>
                  <div>
-                   <h3 className="font-serif text-lg mb-1">Email</h3>
-                   <p className="text-sm text-neutral-400">info@arevatailor.com</p>
+                   <h3 className="font-serif text-lg mb-1 text-white">Email</h3>
+                   <p className="text-sm text-[#999999]">atelier@arevatailor.com</p>
                  </div>
                </div>
              </div>
@@ -125,7 +143,7 @@ export default function ContactPage() {
 
           {/* KOLOM KANAN: Form (Lebar 8 kolom) */}
           <div className="lg:col-span-8">
-            <div className="bg-gradient-to-br from-neutral-900 to-black p-8 md:p-10 rounded-2xl border border-gold/30 shadow-[0_0_40px_rgba(212,155,53,0.1)]">
+            <div className="bg-[#0d0d0d] p-8 md:p-10 rounded-2xl border border-[#262626] shadow-2xl">
                
                <form onSubmit={handleSubmit} className="space-y-8">
                   {errorMessage && (
@@ -135,12 +153,12 @@ export default function ContactPage() {
                   )}
                   {submitted && (
                     <div className="p-4 bg-gold/10 border border-gold/40 text-gold text-sm rounded-lg flex items-center gap-2">
-                      <Check size={16} /> Permintaan reservasi sedang diteruskan ke WhatsApp Atelier.
+                      <Check size={16} /> Appointment request recorded and connecting to WhatsApp concierge.
                     </div>
                   )}
                   {/* Service Selection */}
                   <div>
-                    <label className="text-xs uppercase tracking-widest text-neutral-400 mb-4 block">I am interested in</label>
+                    <label className="text-xs font-mono uppercase tracking-[0.25em] text-[#999999] mb-4 block">Bespoke Service</label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                       {services.map((service) => (
                         <div 
@@ -148,14 +166,14 @@ export default function ContactPage() {
                           onClick={() => setSelectedService(service.id)}
                           className={`cursor-pointer rounded-xl border p-4 text-center transition-all duration-300 relative ${
                             selectedService === service.id 
-                              ? "bg-gold text-black border-gold font-bold shadow-[0_0_15px_rgba(212,155,53,0.4)]" 
-                              : "bg-white/5 border-white/10 text-neutral-400 hover:bg-white/10 hover:border-gold/50"
+                              ? "bg-gold text-black border-gold font-bold shadow-[0_0_15px_rgba(212,155,53,0.3)]" 
+                              : "bg-[#141414] border-[#262626] text-[#999999] hover:bg-[#1a1a1a] hover:border-gold/50 hover:text-white"
                           }`}
                         >
-                          <span className="text-sm">{service.label}</span>
+                          <span className="text-xs font-serif tracking-wide">{service.label}</span>
                           {selectedService === service.id && (
-                            <div className="absolute -top-2 -right-2 bg-white text-black rounded-full p-1">
-                              <Check size={10} strokeWidth={4} />
+                            <div className="absolute -top-1.5 -right-1.5 bg-black text-gold rounded-full p-1 border border-gold">
+                              <Check size={10} strokeWidth={3} />
                             </div>
                           )}
                         </div>
@@ -165,64 +183,64 @@ export default function ContactPage() {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-xs uppercase tracking-widest text-neutral-400 ml-1">Name</label>
+                      <label className="text-xs font-mono uppercase tracking-[0.2em] text-[#999999] ml-1">Full Name</label>
                       <Input 
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="Your Full Name" 
+                        placeholder="e.g. Alexander Wright" 
                         required
-                        className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 placeholder:text-neutral-600 transition-all" 
+                        className="bg-[#141414] border-[#262626] h-12 rounded-xl text-white focus:border-gold focus:ring-0 placeholder:text-[#555555] transition-all" 
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-xs uppercase tracking-widest text-neutral-400 ml-1">Phone (WhatsApp)</label>
+                      <label className="text-xs font-mono uppercase tracking-[0.2em] text-[#999999] ml-1">WhatsApp / Phone</label>
                       <Input 
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        placeholder="0812..." 
+                        placeholder="+62 812..." 
                         required
-                        className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 placeholder:text-neutral-600 transition-all" 
+                        className="bg-[#141414] border-[#262626] h-12 rounded-xl text-white focus:border-gold focus:ring-0 placeholder:text-[#555555] transition-all" 
                       />
                     </div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                       <label className="text-xs uppercase tracking-widest text-neutral-400 ml-1">Preferred Date</label>
+                       <label className="text-xs font-mono uppercase tracking-[0.2em] text-[#999999] ml-1">Preferred Date</label>
                        <Input 
                          type="date" 
                          value={preferredDate}
                          onChange={(e) => setPreferredDate(e.target.value)}
-                         className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 transition-all [color-scheme:dark]" 
+                         className="bg-[#141414] border-[#262626] h-12 rounded-xl text-white focus:border-gold focus:ring-0 transition-all [color-scheme:dark]" 
                        />
                     </div>
                     <div className="space-y-2">
-                       <label className="text-xs uppercase tracking-widest text-neutral-400 ml-1">Time (Approx)</label>
+                       <label className="text-xs font-mono uppercase tracking-[0.2em] text-[#999999] ml-1">Preferred Time</label>
                        <Input 
                          type="time" 
                          value={preferredTime}
                          onChange={(e) => setPreferredTime(e.target.value)}
-                         className="bg-white/5 border-white/10 h-12 rounded-lg text-white focus:border-gold focus:ring-0 transition-all [color-scheme:dark]" 
+                         className="bg-[#141414] border-[#262626] h-12 rounded-xl text-white focus:border-gold focus:ring-0 transition-all [color-scheme:dark]" 
                        />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest text-neutral-400 ml-1">Additional Notes</label>
+                    <label className="text-xs font-mono uppercase tracking-[0.2em] text-[#999999] ml-1">Specific Requests</label>
                     <Textarea 
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
-                      placeholder="Tell us more about your needs..." 
-                      className="bg-white/5 border-white/10 min-h-[120px] rounded-lg text-white focus:border-gold focus:ring-0 placeholder:text-neutral-600 transition-all resize-none" 
+                      placeholder="Inform us about your desired fabric, event date, or silhouette..." 
+                      className="bg-[#141414] border-[#262626] min-h-[120px] rounded-xl text-white focus:border-gold focus:ring-0 placeholder:text-[#555555] transition-all resize-none" 
                     />
                   </div>
 
                   <Button 
                     type="submit" 
                     disabled={loading}
-                    className="w-full bg-gold hover:bg-gold-light text-black font-bold tracking-widest h-14 rounded-lg shadow-[0_0_20px_rgba(212,155,53,0.2)] hover:shadow-[0_0_30px_rgba(212,155,53,0.4)] transition-all text-lg cursor-pointer"
+                    className="w-full bg-gold hover:bg-gold-light text-black font-serif text-xs font-bold tracking-[0.25em] uppercase h-14 rounded-full shadow-[0_0_25px_rgba(212,155,53,0.3)] hover:shadow-[0_0_35px_rgba(212,155,53,0.5)] transition-all cursor-pointer border-none"
                   >
-                    {loading ? "CONNECTING..." : "CONFIRM BOOKING VIA WHATSAPP"}
+                    {loading ? "CONNECTING TO ATELIER..." : "RESERVE BESPOKE FITTING"}
                   </Button>
 
                   <p className="text-center text-xs text-neutral-500 pt-4">

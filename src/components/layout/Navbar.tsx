@@ -32,6 +32,7 @@ export default function Navbar() {
             { label: 'MAISON', href: '/' },
             { label: 'COLLECTION', href: '/products' },
             { label: 'HERITAGE', href: '/about' },
+            { label: '3D LAB', href: '/lab-3d' },
             { label: 'APPOINTMENT', href: '/contact' }
           ].map((item) => (
             <Link 
@@ -76,6 +77,7 @@ export default function Navbar() {
             { label: 'MAISON', href: '/' },
             { label: 'COLLECTION', href: '/products' },
             { label: 'HERITAGE', href: '/about' },
+            { label: '3D LAB', href: '/lab-3d' },
             { label: 'APPOINTMENT', href: '/contact' }
           ].map((item) => (
             <Link 
