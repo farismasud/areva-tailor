@@ -7,6 +7,9 @@ import { motion, useReducedMotion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { ArrowUpRight, ArrowRight } from "lucide-react"
 import { SilkClothCanvas } from "@/components/home/SilkClothCanvas"
+import { BespokeProcessSection } from "@/components/home/BespokeProcessSection"
+import { FabricHeritageSection } from "@/components/home/FabricHeritageSection"
+import { BespokeFaqSection } from "@/components/home/BespokeFaqSection"
 import type { Product } from "@/types/database.types"
 
 interface HeroSectionProps {
@@ -139,7 +142,35 @@ function MagneticTiltCard({ product }: { product: Product | null }) {
   )
 }
 
+const fallbackCommissions = [
+  {
+    id: "sample-1",
+    slug: "midnight-black-tuxedo",
+    name: "Midnight Black Dinner Tuxedo",
+    category: "SUITS",
+    image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=1000&auto=format&fit=crop",
+    desc: "Barathea wool with satin grosgrain peak lapels and hand-sewn buttonholes.",
+  },
+  {
+    id: "sample-2",
+    slug: "charcoal-chalkstripe-suit",
+    name: "Charcoal Chalkstripe Three-Piece",
+    category: "SUITS",
+    image: "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?q=80&w=1000&auto=format&fit=crop",
+    desc: "English flannel tailored with high-rise pleated trousers and horseshoe vest.",
+  },
+  {
+    id: "sample-3",
+    slug: "bespoke-silk-batik-shirt",
+    name: "Royal Canting Batik Silk Shirt",
+    category: "BATIK",
+    image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=1000&auto=format&fit=crop",
+    desc: "Hand-drawn mulberry silk with hidden placket and mother-of-pearl buttons.",
+  },
+]
+
 export function HeroSection({ featuredProducts }: HeroSectionProps) {
+  const displayProducts = featuredProducts && featuredProducts.length > 0 ? featuredProducts : fallbackCommissions
   const reduce = useReducedMotion()
 
   // Editorial word split animation variants
@@ -192,40 +223,20 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
                 </span>
               </motion.div>
 
-              {/* Masked Editorial Headline Reveal */}
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="space-y-1"
-              >
-                <div className="overflow-hidden">
-                  <motion.h1 
-                    variants={wordVariants}
-                    className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif text-white leading-[1.08] tracking-tight"
-                  >
-                    Anatomy of
-                  </motion.h1>
-                </div>
-                <div className="overflow-hidden">
-                  <motion.h1 
-                    variants={wordVariants}
-                    className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif leading-[1.08] tracking-tight"
-                  >
-                    <span className="text-gold italic font-light">Bespoke Precision</span>
-                  </motion.h1>
-                </div>
-              </motion.div>
+              {/* Masked Editorial Headline */}
+              <div className="space-y-1">
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif text-white leading-[1.08] tracking-tight">
+                  Anatomy of
+                </h1>
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif leading-[1.08] tracking-tight">
+                  <span className="text-gold italic font-light">Bespoke Precision</span>
+                </h1>
+              </div>
 
               {/* Subhead Paragraph */}
-              <motion.p 
-                initial={reduce ? false : { opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="text-sm sm:text-base text-[#cccccc] font-light leading-relaxed max-w-xl"
-              >
+              <p className="text-sm sm:text-base text-[#cccccc] font-light leading-relaxed max-w-xl">
                 Master craftsmanship engineered to the natural contours of your physique. Sculpted with hand-canvassed construction and prestigious European wools from Scabal and Loro Piana.
-              </motion.p>
+              </p>
 
               {/* Action Buttons: Liquid Border Shimmer on Hover */}
               <motion.div 
@@ -292,13 +303,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
       {/* === ARCHITECTURAL PRINCIPLES (Monochrome Hairlines) === */}
       <section className="py-24 bg-[#080808] border-b border-[#262626]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-            className="grid md:grid-cols-3 gap-8 lg:gap-12"
-          >
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
             
             <div className="group p-8 rounded-2xl bg-[#0d0d0d] border border-[#262626] hover:border-[#3a3a3a] transition-all duration-500 space-y-4 hover:-translate-y-1">
               <span className="font-mono text-xs text-gold uppercase tracking-[0.25em]">01 / Precision</span>
@@ -324,7 +329,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
               </p>
             </div>
 
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -345,59 +350,74 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
             </Link>
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {featuredProducts?.map((product, idx) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.23, 1, 0.32, 1] }}
-              >
-                <Link 
-                  href={`/products/${product.slug}`} 
-                  className="group block"
-                >
-                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#0d0d0d] border border-[#262626] group-hover:border-gold/50 transition-all duration-500 shadow-xl">
-                    {product.image_url ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                id: "commission-1",
+                slug: "jas-luxury",
+                name: "Jas Luxury Bespoke Tuxedo",
+                category: "SUITS",
+                image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+                desc: "Barathea wool with satin grosgrain lapels and hand-sewn buttonholes.",
+              },
+              {
+                id: "commission-2",
+                slug: "batik-formal",
+                name: "Royal Batik Silk Canting",
+                category: "BATIK",
+                image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=1000&auto=format&fit=crop",
+                desc: "Hand-drawn mulberry silk crafted with authentic wax canting.",
+              },
+              {
+                id: "commission-3",
+                slug: "kemeja",
+                name: "Atelier Egyptian Cotton Shirt",
+                category: "SHIRTINGS",
+                image: "https://images.unsplash.com/photo-1603252109303-2751441dd157?q=80&w=1000&auto=format&fit=crop",
+                desc: "Crisp two-ply Giza cotton tailored with Australian mother-of-pearl buttons.",
+              },
+            ].map((item, idx) => {
+              const linkHref = item.slug ? `/products/${item.slug}` : "/products"
+              return (
+                <div key={item.id || idx}>
+                  <Link href={linkHref} className="group block">
+                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#0d0d0d] border border-[#262626] group-hover:border-gold/50 transition-all duration-500 shadow-xl">
                       <Image 
-                        src={product.image_url} 
-                        alt={product.name} 
+                        src={item.image} 
+                        alt={item.name} 
                         fill
+                        unoptimized
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                    ) : (
-                      <div className="flex items-center justify-center h-full text-neutral-600 font-mono text-xs">NO PREVIEW</div>
-                    )}
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/30 to-transparent" />
-
-                    <div className="absolute bottom-0 left-0 right-0 p-6 space-y-1">
-                      {product.category && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/30 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6 space-y-1">
                         <span className="text-gold text-[10px] font-mono tracking-[0.25em] uppercase">
-                          {product.category}
+                          {item.category}
                         </span>
-                      )}
-                      <h3 className="text-xl font-serif text-white group-hover:text-gold transition-colors">
-                        {product.name}
-                      </h3>
-                      <p className="text-xs text-[#999999] line-clamp-1 font-light">
-                        {product.description || "Bespoke handcrafted commission."}
-                      </p>
+                        <h3 className="text-xl font-serif text-white group-hover:text-gold transition-colors">
+                          {item.name}
+                        </h3>
+                        <p className="text-xs text-[#999999] line-clamp-1 font-light">
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
+                  </Link>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </section>
+
+      {/* === BESPOKE CRAFT PROTOCOL: 4 STAGES OF FITTING === */}
+      <BespokeProcessSection />
+
+      {/* === CURATED EUROPEAN MILLS & FABRIC HERITAGE === */}
+      <FabricHeritageSection />
+
+      {/* === CLIENT GUIDANCE FAQ === */}
+      <BespokeFaqSection />
 
       {/* === PRIVATE ATELIER CONSULTATION CALLOUT === */}
       <section className="py-24 bg-[#080808] relative overflow-hidden">
