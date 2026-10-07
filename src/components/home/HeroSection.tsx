@@ -20,37 +20,10 @@ interface HeroSectionProps {
  * Animated measuring tape counter for sartorial metrics
  */
 function MetricCounter({ target, suffix = "", label }: { target: number; suffix?: string; label: string }) {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    const duration = 600
-    const startTimestamp = performance.now()
-
-    let animationFrameId: number
-
-    const step = (now: number) => {
-      const elapsed = now - startTimestamp
-      const progress = Math.min(elapsed / duration, 1)
-      // Ease out cubic
-      const easeVal = 1 - Math.pow(1 - progress, 3)
-      const current = Math.min(Math.round(easeVal * target), target)
-      setCount(current)
-
-      if (progress < 1) {
-        animationFrameId = requestAnimationFrame(step)
-      } else {
-        setCount(target)
-      }
-    }
-
-    animationFrameId = requestAnimationFrame(step)
-    return () => cancelAnimationFrame(animationFrameId)
-  }, [target])
-
   return (
     <div className="overflow-hidden">
       <div className="text-xl sm:text-2xl font-mono text-white tracking-tight flex items-baseline">
-        <span>{count}</span>
+        <span>{target}</span>
         <span>{suffix}</span>
       </div>
       <div className="text-[10px] text-[#999999] uppercase tracking-[0.25em] font-mono mt-1">{label}</div>
@@ -333,12 +306,12 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
         </div>
       </section>
 
-      {/* === ARCHIVE / MASTERPIECES COLLECTION === */}
+      {/* === SIGNATURE PIECES COLLECTION === */}
       <section className="py-24 bg-[#050505] border-b border-[#262626]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
-              <span className="text-gold text-xs font-mono tracking-[0.25em] uppercase">Featured Work</span>
+              <span className="text-gold text-xs font-mono tracking-[0.25em] uppercase">Tailored Showcase</span>
               <h2 className="text-3xl sm:text-5xl font-serif text-white mt-2">Signature Pieces</h2>
             </div>
             <Link 
@@ -356,48 +329,50 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
                 id: "commission-1",
                 slug: "jas-luxury",
                 name: "Black Evening Tuxedo",
-                category: "SUITS",
+                category: "EXECUTIVE SUITS",
                 image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
-                desc: "Classic dinner suit tailored with satin silk lapels and hand-sewn buttonholes.",
+                desc: "Custom tailored two-piece suit with natural canvas structure for senior executives and formal occasions.",
               },
               {
                 id: "commission-2",
-                slug: "batik-formal",
-                name: "Hand-Drawn Silk Batik",
-                category: "BATIK",
-                image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=1000&auto=format&fit=crop",
-                desc: "Authentic Indonesian silk shirt handcrafted using traditional beeswax techniques.",
+                slug: "jas-luxury",
+                name: "Charcoal Double-Breasted Suit",
+                category: "BUSINESS ATTIRE",
+                image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=1000&auto=format&fit=crop",
+                desc: "Crafted for high-level meetings and official engagements with structured shoulders and tailored drape.",
               },
               {
                 id: "commission-3",
-                slug: "kemeja",
-                name: "Custom Egyptian Cotton Shirt",
-                category: "SHIRTS",
-                image: "https://images.unsplash.com/photo-1603252109303-2751441dd157?q=80&w=1000&auto=format&fit=crop",
-                desc: "Breathable fine cotton shirt finished with natural mother-of-pearl buttons.",
+                slug: "jas-luxury",
+                name: "Presidential Formal Silk Batik",
+                category: "BATIK & SHIRTINGS",
+                image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=1000&auto=format&fit=crop",
+                desc: "Handcrafted long-sleeve silk batik shirt tailored with custom collars for state events and boardroom wear.",
               },
             ].map((item, idx) => {
-              const linkHref = item.slug ? `/products/${item.slug}` : "/products"
+              const linkHref = `/products/${item.slug}`
               return (
                 <div key={item.id || idx}>
                   <Link href={linkHref} className="group block">
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#0d0d0d] border border-[#262626] group-hover:border-gold/50 transition-all duration-500 shadow-xl">
-                      <Image 
-                        src={item.image} 
-                        alt={item.name} 
-                        fill
-                        unoptimized
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/30 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6 space-y-1">
-                        <span className="text-gold text-[10px] font-mono tracking-[0.25em] uppercase">
+                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#0d0d0d] border border-[#222222] group-hover:border-gold transition-all duration-500 shadow-xl">
+                      {/* Base Image Container */}
+                      <div className="absolute inset-0 bg-[#111111]">
+                        <img 
+                          src={item.image} 
+                          alt={item.name} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          loading="eager"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6 space-y-1.5">
+                        <span className="text-gold text-[10px] font-mono tracking-[0.25em] uppercase font-medium">
                           {item.category}
                         </span>
                         <h3 className="text-xl font-serif text-white group-hover:text-gold transition-colors">
                           {item.name}
                         </h3>
-                        <p className="text-xs text-[#999999] line-clamp-1 font-light">
+                        <p className="text-xs text-[#999999] line-clamp-2 font-light leading-relaxed">
                           {item.desc}
                         </p>
                       </div>
@@ -419,33 +394,27 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
       {/* === CLIENT GUIDANCE FAQ === */}
       <BespokeFaqSection />
 
-      {/* === PRIVATE ATELIER CONSULTATION CALLOUT === */}
-      <section className="py-24 bg-[#080808] relative overflow-hidden">
+      {/* === PRIVATE CONSULTATION CALLOUT === */}
+      <section className="py-24 bg-[#080808] relative overflow-hidden border-b border-[#262626]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 text-center relative z-10 space-y-6 max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            className="space-y-6"
-          >
-            <span className="text-gold text-xs font-mono tracking-[0.25em] uppercase">Private Consultation</span>
-            <h2 className="text-3xl sm:text-5xl font-serif text-white">Experience Bespoke Tailoring</h2>
+          <div className="space-y-6">
+            <span className="text-gold text-xs font-mono tracking-[0.25em] uppercase font-medium">Private Appointment</span>
+            <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-tight">Experience Custom Tailoring</h2>
             <p className="text-[#999999] text-sm sm:text-base leading-relaxed font-light">
-              Book a private fitting session with our master tailor at our Jakarta atelier, or schedule a home fitting at your convenience.
+              Schedule a fitting with our master tailor at our Jakarta atelier, or arrange a private consultation at your residence or executive office.
             </p>
-            <div className="pt-4">
+            <div className="pt-4 flex justify-center">
               <Link href="/contact">
-                <Button 
-                  size="lg" 
-                  className="rounded-full bg-gold hover:bg-gold-light text-black font-serif text-xs font-bold uppercase tracking-[0.2em] px-8 h-13 shadow-[0_0_25px_rgba(212,155,53,0.3)] hover:shadow-[0_0_35px_rgba(212,155,53,0.5)] border-none cursor-pointer"
+                <button 
+                  type="button"
+                  className="group inline-flex items-center justify-center gap-2 px-8 h-12 rounded-full text-xs font-serif font-bold tracking-[0.2em] uppercase text-black bg-gold hover:bg-gold-light transition-all duration-300 shadow-[0_4px_20px_rgba(212,155,53,0.25)] hover:shadow-[0_4px_25px_rgba(212,155,53,0.4)] cursor-pointer border-none"
                 >
                   <span>Book an Appointment</span>
-                  <ArrowUpRight size={15} className="ml-1.5 stroke-[2]" />
-                </Button>
+                  <ArrowUpRight size={14} className="stroke-[2.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </button>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

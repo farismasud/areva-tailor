@@ -72,13 +72,14 @@ export function FabricHeritageSection() {
                 <div>
                   {/* Textile Swatch Visual */}
                   <div className="relative aspect-[16/10] overflow-hidden bg-[#141414]">
-                    <Image
-                      src={fabric.image}
-                      alt={fabric.name}
-                      fill
-                      unoptimized
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                    <div className="absolute inset-0">
+                      <img
+                        src={fabric.image}
+                        alt={fabric.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="eager"
+                      />
+                    </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90" />
                     
                     <div className="absolute top-4 left-4">
