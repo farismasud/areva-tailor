@@ -18,49 +18,34 @@ interface HeroSectionProps {
  */
 function MetricCounter({ target, suffix = "", label }: { target: number; suffix?: string; label: string }) {
   const [count, setCount] = useState(0)
-  const ref = useRef<HTMLDivElement>(null)
-  const [started, setStarted] = useState(false)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          setStarted(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
+    const duration = 600
+    const startTimestamp = performance.now()
 
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [started])
+    let animationFrameId: number
 
-  useEffect(() => {
-    if (!started) return
-    const duration = 500
-    const frameRate = 1000 / 60
-    const totalFrames = Math.max(1, Math.round(duration / frameRate))
-    let frame = 0
-
-    const timer = setInterval(() => {
-      frame++
-      const progress = Math.min(frame / totalFrames, 1)
+    const step = (now: number) => {
+      const elapsed = now - startTimestamp
+      const progress = Math.min(elapsed / duration, 1)
       // Ease out cubic
       const easeVal = 1 - Math.pow(1 - progress, 3)
-      const current = Math.round(easeVal * target)
+      const current = Math.min(Math.round(easeVal * target), target)
       setCount(current)
 
-      if (frame >= totalFrames) {
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(step)
+      } else {
         setCount(target)
-        clearInterval(timer)
       }
-    }, frameRate)
+    }
 
-    return () => clearInterval(timer)
-  }, [started, target])
+    animationFrameId = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(animationFrameId)
+  }, [target])
 
   return (
-    <div ref={ref} className="overflow-hidden">
+    <div className="overflow-hidden">
       <div className="text-xl sm:text-2xl font-mono text-white tracking-tight flex items-baseline">
         <span>{count}</span>
         <span>{suffix}</span>
