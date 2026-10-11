@@ -85,7 +85,7 @@ export function KineticFibers3DCanvas() {
       mouseX += (targetX - mouseX) * 0.05
       mouseY += (targetY - mouseY) * 0.05
 
-      threadCurves.forEach((thread, tIdx) => {
+      threadCurves.forEach((thread) => {
         const posAttr = thread.geom.attributes.position as THREE.BufferAttribute
         const arr = posAttr.array as Float32Array
 

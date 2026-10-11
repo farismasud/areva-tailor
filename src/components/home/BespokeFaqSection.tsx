@@ -27,15 +27,15 @@ export function BespokeFaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section className="py-28 bg-[#050505] border-b border-[#262626]">
+    <section className="py-28 bg-background border-b border-border transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 max-w-4xl">
         
         {/* Header */}
         <div className="text-center mb-16 space-y-3">
-          <span className="font-mono text-xs text-gold uppercase tracking-[0.3em]">
-            Got Questions?
+          <span className="font-mono text-xs text-primary uppercase tracking-[0.3em]">
+            Client Inquiries
           </span>
-          <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-serif text-foreground tracking-tight">
             Frequently Asked Questions
           </h2>
         </div>
@@ -47,8 +47,8 @@ export function BespokeFaqSection() {
             return (
               <div
                 key={faq.q}
-                className={`rounded-2xl border transition-colors duration-300 overflow-hidden ${
-                  isOpen ? "bg-[#0d0d0d] border-gold/40" : "bg-[#080808] border-[#222222] hover:border-[#333333]"
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  isOpen ? "bg-card border-primary/50 shadow-md" : "bg-card/50 border-border hover:border-primary/40"
                 }`}
               >
                 <button
@@ -56,11 +56,11 @@ export function BespokeFaqSection() {
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
                   className="w-full text-left p-6 sm:p-7 flex items-center justify-between gap-4 cursor-pointer"
                 >
-                  <span className="font-serif text-base sm:text-lg text-white font-normal">
+                  <span className="font-serif text-base sm:text-lg text-foreground font-normal">
                     {faq.q}
                   </span>
                   <div className={`p-1.5 rounded-full border transition-colors shrink-0 ${
-                    isOpen ? "border-gold text-gold bg-gold/10" : "border-[#333333] text-[#777777]"
+                    isOpen ? "border-primary text-primary bg-primary/10" : "border-border text-muted-foreground"
                   }`}>
                     {isOpen ? <Minus size={14} /> : <Plus size={14} />}
                   </div>
@@ -75,7 +75,7 @@ export function BespokeFaqSection() {
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 sm:px-7 pb-7 pt-1 text-sm text-[#999999] font-light leading-relaxed border-t border-[#1a1a1a]">
+                      <div className="px-6 sm:px-7 pb-7 pt-1 text-sm text-muted-foreground font-light leading-relaxed border-t border-border">
                         {faq.a}
                       </div>
                     </motion.div>

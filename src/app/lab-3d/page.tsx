@@ -30,7 +30,7 @@ const experiments = [
   {
     id: "ribbon",
     name: "03 / Infinite Möbius Ribbon",
-    tag: "Minimalist Couture (ThreeUI)",
+    tag: "Minimalist Couture",
     desc: "Single continuous 3D gold silk tube ribbon twisting gracefully with metallic sheen, specular reflections, and wireframe skeleton overlay.",
     icon: Layers,
     component: SilkRibbon3DCanvas,
@@ -53,9 +53,9 @@ const experiments = [
   },
   {
     id: "cloth",
-    name: "06 / Current Silk Cloth Drape",
-    tag: "Active on Homepage",
-    desc: "Woven silk plane simulation with custom GLSL vertex shader rippling dynamically beneath the mouse cursor.",
+    name: "06 / Adaptive Silk Drape",
+    tag: "Light & Dark Reactive",
+    desc: "Woven silk plane simulation with custom GLSL vertex shader rippling dynamically beneath mouse movement and shifting tone with active theme.",
     icon: Sparkles,
     component: SilkClothCanvas,
   },
@@ -68,26 +68,26 @@ export default function Lab3DPage() {
   const ActiveComponent = currentExperiment.component
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white flex flex-col">
+    <div className="min-h-screen bg-background text-foreground flex flex-col transition-colors duration-300">
       {/* Top Bar */}
-      <header className="h-16 border-b border-[#262626] px-6 sm:px-12 flex items-center justify-between z-20 bg-[#050505]/90 backdrop-blur-md sticky top-0">
+      <header className="h-16 border-b border-border px-6 sm:px-12 flex items-center justify-between z-20 bg-background/90 backdrop-blur-md sticky top-0">
         <div className="flex items-center gap-4">
           <Link
             href="/"
-            className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#999999] hover:text-white transition uppercase"
+            className="flex items-center gap-2 text-xs font-mono tracking-widest text-muted-foreground hover:text-foreground transition uppercase"
           >
             <ArrowLeft size={14} />
             <span>Back to Home</span>
           </Link>
-          <span className="text-[#3a3a3a]">/</span>
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-gold font-semibold">
+          <span className="text-border">/</span>
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-primary font-semibold">
             3D Motion Lab
           </span>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-mono text-[11px] text-[#999999] uppercase tracking-widest">
+          <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-widest">
             6 WebGL Experiments Ready
           </span>
         </div>
@@ -96,12 +96,12 @@ export default function Lab3DPage() {
       {/* Main Showcase Layout */}
       <div className="flex-1 grid lg:grid-cols-12 relative overflow-hidden">
         {/* Left Control Panel */}
-        <aside className="lg:col-span-4 border-r border-[#262626] p-6 lg:p-8 flex flex-col justify-between bg-[#080808]/70 backdrop-blur-md z-10 overflow-y-auto max-h-[calc(100vh-4rem)]">
+        <aside className="lg:col-span-4 border-r border-border p-6 lg:p-8 flex flex-col justify-between bg-card/60 backdrop-blur-md z-10 overflow-y-auto max-h-[calc(100vh-4rem)]">
           <div className="space-y-6">
             <div>
-              <span className="font-mono text-[10px] text-gold uppercase tracking-[0.3em]">Bespoke 3D Exploration</span>
-              <h1 className="text-2xl sm:text-3xl font-serif text-white mt-1">Sartorial 3D Concepts</h1>
-              <p className="text-xs text-[#999999] font-light leading-relaxed mt-2">
+              <span className="font-mono text-[10px] text-primary uppercase tracking-[0.3em]">Bespoke 3D Exploration</span>
+              <h1 className="text-2xl sm:text-3xl font-serif text-foreground mt-1">Sartorial 3D Concepts</h1>
+              <p className="text-xs text-muted-foreground font-light leading-relaxed mt-2">
                 Pilih konsep 3D di bawah ini untuk melihat pergerakan fisik kain, partikel, anatomi torso, gunting tailor, atau struktur tenun benang secara real-time.
               </p>
             </div>
@@ -117,21 +117,21 @@ export default function Lab3DPage() {
                     onClick={() => setActiveId(exp.id)}
                     className={`w-full text-left p-3.5 rounded-xl border transition-all duration-300 cursor-pointer flex items-start gap-3.5 ${
                       isSelected
-                        ? "bg-[#141414] border-gold text-white shadow-[0_0_20px_rgba(212,155,53,0.15)]"
-                        : "bg-[#0a0a0a] border-[#262626] text-[#999999] hover:border-[#3a3a3a] hover:text-white"
+                        ? "bg-card border-primary text-foreground shadow-md"
+                        : "bg-secondary/40 border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
                     }`}
                   >
-                    <div className={`p-2 rounded-lg border mt-0.5 ${isSelected ? "border-gold/40 text-gold bg-gold/10" : "border-[#262626] text-neutral-400"}`}>
+                    <div className={`p-2 rounded-lg border mt-0.5 ${isSelected ? "border-primary/40 text-primary bg-primary/10" : "border-border text-muted-foreground"}`}>
                       <Icon size={16} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
-                        <span className="font-serif text-sm text-white font-normal truncate">{exp.name}</span>
+                        <span className="font-serif text-sm text-foreground font-normal truncate">{exp.name}</span>
                       </div>
-                      <span className="inline-block mt-0.5 text-[10px] font-mono tracking-wider text-gold uppercase">
+                      <span className="inline-block mt-0.5 text-[10px] font-mono tracking-wider text-primary uppercase">
                         {exp.tag}
                       </span>
-                      <p className="text-[11px] text-[#888888] line-clamp-2 mt-1 font-light leading-relaxed">
+                      <p className="text-[11px] text-muted-foreground line-clamp-2 mt-1 font-light leading-relaxed">
                         {exp.desc}
                       </p>
                     </div>
@@ -141,20 +141,20 @@ export default function Lab3DPage() {
             </div>
           </div>
 
-          <div className="pt-6 border-t border-[#1f1f1f] mt-6">
-            <div className="p-4 rounded-xl bg-black/60 border border-white/10 space-y-1.5">
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[#888888]">Tips Interaksi</span>
-              <p className="text-xs text-[#cccccc] font-light leading-relaxed">
-                Arahkan kursor mouse ke kanvas sebelah kanan. Setiap model memiliki kurva physics dan specular lighting yang unik.
+          <div className="pt-6 border-t border-border mt-6">
+            <div className="p-4 rounded-xl bg-card border border-border space-y-1.5">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Tips Interaksi</span>
+              <p className="text-xs text-muted-foreground font-light leading-relaxed">
+                Arahkan kursor mouse ke kanvas sebelah kanan. Setiap model memiliki kurva physics dan specular lighting yang responsif.
               </p>
             </div>
           </div>
         </aside>
 
         {/* Right 3D Viewport */}
-        <main className="lg:col-span-8 relative min-h-[550px] lg:min-h-full flex items-center justify-center bg-[#050505]">
+        <main className="lg:col-span-8 relative min-h-[550px] lg:min-h-full flex items-center justify-center bg-background">
           {/* Subtle Ambient Radial Light */}
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,#171512_0%,#050505_75%)]" />
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,var(--tw-colors-card)_0%,transparent_75%)] opacity-50" />
 
           {/* Active 3D Component */}
           <div className="absolute inset-0 z-0 flex items-center justify-center">
@@ -163,8 +163,8 @@ export default function Lab3DPage() {
 
           {/* Overlay Badge Status */}
           <div className="absolute bottom-6 right-6 z-10 pointer-events-none">
-            <div className="px-4 py-2 rounded-full bg-black/80 backdrop-blur-md border border-[#262626] text-[11px] font-mono text-[#999999] tracking-widest uppercase">
-              RENDER: <span className="text-white font-semibold">{currentExperiment.name.split("/")[1] || currentExperiment.name}</span>
+            <div className="px-4 py-2 rounded-full bg-card/85 backdrop-blur-md border border-border text-[11px] font-mono text-muted-foreground tracking-widest uppercase">
+              RENDER: <span className="text-foreground font-semibold">{currentExperiment.name.split("/")[1] || currentExperiment.name}</span>
             </div>
           </div>
         </main>

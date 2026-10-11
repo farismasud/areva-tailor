@@ -3,56 +3,98 @@
 @tailwind utilities;
 
 @layer base {
+  /* LIGHT MODE (DEFAULT): Warm Organic Alabaster Linen & Deep Charcoal Ink */
   :root {
-    --background: 0 0% 5%; /* Hitam Abu Sangat Gelap (#0D0D0D) */
-    --foreground: 0 0% 95%;
+    --background: 40 25% 97%;       /* #FAF8F5 - Warm Alabaster Linen */
+    --foreground: 30 12% 12%;       /* #1D1B18 - Warm Deep Charcoal Ink */
     
-    /* Emas Logo (#D49B35) -> HSL: 38 65% 52% */
-    --primary: 38 65% 52%; 
-    --primary-foreground: 0 0% 5%;
+    --card: 38 20% 94%;             /* #F2EFE9 - Warm Oat Parchment */
+    --card-foreground: 30 12% 12%;
 
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 95%;
- 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 95%;
- 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 98%;
- 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 60%;
- 
-    --accent: 38 65% 52%;
-    --accent-foreground: 0 0% 5%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
- 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 38 65% 52%;
- 
+    --popover: 40 25% 97%;
+    --popover-foreground: 30 12% 12%;
+
+    /* Artisan Savile Row Gold */
+    --primary: 40 68% 42%;          /* #B48520 */
+    --primary-foreground: 40 25% 97%;
+
+    --gold: 40 68% 42%;
+    --gold-light: 40 65% 52%;
+    --gold-dark: 40 70% 34%;
+
+    --secondary: 36 18% 90%;        /* #E9E4DA - Warm Light Sandstone */
+    --secondary-foreground: 30 12% 14%;
+
+    --muted: 36 18% 91%;            /* #EBE6DC - Soft Ecru Linen */
+    --muted-foreground: 30 8% 40%;   /* #6D675E - Warm Mineral Gray (AA/AAA high legibility) */
+
+    --accent: 36 22% 88%;
+    --accent-foreground: 30 12% 12%;
+
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 40 25% 97%;
+
+    --border: 36 16% 85%;           /* #DCD6CB - Fine Chalk Line */
+    --input: 36 16% 85%;
+    --ring: 40 68% 42%;
+
     --radius: 0.5rem;
+    --spotlight-color: rgba(180, 133, 32, 0.08);
+  }
+
+  /* DARK MODE: Warm Espresso Obsidian & Aged Silk Parchment (NO pure #000000 or #FFFFFF) */
+  .dark {
+    --background: 30 8% 6%;         /* #11100F - Deep Espresso Obsidian */
+    --foreground: 40 16% 90%;       /* #EBE7DF - Aged Silk Parchment */
+
+    --card: 30 8% 9%;               /* #181715 - Deep Warm Charcoal */
+    --card-foreground: 40 16% 90%;
+
+    --popover: 30 8% 9%;
+    --popover-foreground: 40 16% 90%;
+
+    /* Luminous Heritage Gold */
+    --primary: 38 65% 52%;          /* #D49B35 */
+    --primary-foreground: 30 8% 6%;
+
+    --gold: 38 65% 52%;
+    --gold-light: 38 75% 62%;
+    --gold-dark: 38 70% 40%;
+
+    --secondary: 30 8% 14%;         /* #252320 - Dark Sandstone */
+    --secondary-foreground: 40 16% 90%;
+
+    --muted: 30 8% 14%;
+    --muted-foreground: 35 8% 62%;   /* #9E988E - Warm Pewter */
+
+    --accent: 30 8% 18%;
+    --accent-foreground: 40 16% 90%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 40 16% 90%;
+
+    --border: 30 8% 18%;            /* #302D29 - Muted Warm Charcoal */
+    --input: 30 8% 18%;
+    --ring: 38 65% 52%;
+
+    --spotlight-color: rgba(212, 155, 53, 0.12);
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
   html, body {
-    background-color: #050505 !important;
+    background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     min-height: 100vh;
     overflow-x: hidden;
-  }
-  body {
-    background-image: radial-gradient(ellipse at 50% 0%, #171512 0%, #050505 80%);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
-/* Micro interaction and animation tokens (Emil Kowalski bar) */
+/* Micro interaction and animation tokens (Emil Kowalski standard) */
 :root {
   --ease-out-luxury: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out-luxury: cubic-bezier(0.77, 0, 0.175, 1);

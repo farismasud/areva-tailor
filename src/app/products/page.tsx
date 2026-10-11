@@ -34,16 +34,16 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const activeCategory = category || "all"
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white py-20 md:py-32">
+    <div className="min-h-screen bg-background text-foreground py-20 md:py-32 transition-colors duration-300">
       <div className="container px-4 md:px-6 mx-auto">
         
         {/* Header */}
         <div className="text-center mb-12 space-y-4">
-          <span className="font-mono text-xs text-gold uppercase tracking-[0.3em]">Permanent Archive</span>
-          <h1 className="text-4xl md:text-6xl font-serif font-normal tracking-tight text-white">
+          <span className="font-mono text-xs text-primary uppercase tracking-[0.3em]">Permanent Archive</span>
+          <h1 className="text-4xl md:text-6xl font-serif font-normal tracking-tight text-foreground">
             MASTERPIECES
           </h1>
-          <div className="w-16 h-[1px] bg-[#3a3a3a] mx-auto mt-6"></div>
+          <div className="w-16 h-[1px] bg-border mx-auto mt-6"></div>
         </div>
 
         {/* Category Filter Bar */}
@@ -56,8 +56,8 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
                 href={cat.value === "all" ? "/products" : `/products?category=${cat.value}`}
                 className={`px-5 py-2 rounded-full text-[11px] font-mono tracking-[0.2em] uppercase transition-all duration-300 border ${
                   isSelected
-                    ? "bg-white text-black border-white font-semibold"
-                    : "bg-[#0d0d0d] text-[#999999] border-[#262626] hover:border-white hover:text-white"
+                    ? "bg-primary text-primary-foreground border-primary font-semibold shadow-[0_2px_12px_rgba(180,133,32,0.25)]"
+                    : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
                 }`}
               >
                 {cat.label}
@@ -74,47 +74,44 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
               key={product.id}
               className="group relative block"
             >
-              {/* WADAH UTAMA: Rounded 1.5rem (24px) - Magazine Look */}
-              <div className="relative aspect-[3/4] overflow-hidden bg-neutral-900 rounded-[1.5rem] border border-white/10 shadow-lg group-hover:shadow-[0_0_30px_rgba(212,155,53,0.2)] transition-all duration-500">
+              {/* Card Container */}
+              <div className="relative aspect-[3/4] overflow-hidden bg-card rounded-[1.5rem] border border-border shadow-md group-hover:shadow-[0_8px_30px_rgba(180,133,32,0.18)] group-hover:border-primary/50 transition-all duration-500">
                 
-                {/* Gambar */}
+                {/* Image */}
                 {product.image_url ? (
                   <Image 
                     src={product.image_url} 
                     alt={product.name} 
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 ) : (
-                  <div className="flex items-center justify-center h-full text-neutral-700 font-serif text-sm tracking-widest">NO IMAGE</div>
+                  <div className="flex items-center justify-center h-full text-muted-foreground font-serif text-sm tracking-widest bg-muted">NO IMAGE</div>
                 )}
 
-                {/* GRADASI OVERLAY (Penting biar teks kebaca) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500" />
+                {/* Gradient Scrim */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent opacity-90 group-hover:opacity-75 transition-opacity duration-500" />
 
-                {/* TEKS DI DALAM (Pojok Kiri Bawah) */}
-                <div className="absolute bottom-0 left-0 w-full p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500 z-20">
-                    {/* Kategori kecil */}
-                    {product.category && (
-                        <p className="text-gold text-[10px] font-bold tracking-widest uppercase mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            {product.category}
-                        </p>
-                    )}
-                    
-                    {/* Judul Produk */}
-                    <h3 className="text-2xl font-serif text-white leading-tight mb-1">
-                      {product.name}
-                    </h3>
-                    
-                    {/* Subtext kecil */}
-                    <p className="text-xs text-neutral-400 font-light line-clamp-1 group-hover:text-white transition-colors">
-                        View Details
+                {/* Bottom Content */}
+                <div className="absolute bottom-0 left-0 w-full p-6 translate-y-1 group-hover:translate-y-0 transition-transform duration-500 z-20">
+                  {product.category && (
+                    <p className="text-primary text-[10px] font-mono font-semibold tracking-widest uppercase mb-1.5 opacity-90">
+                      {product.category}
                     </p>
+                  )}
+                  
+                  <h3 className="text-2xl font-serif text-foreground leading-tight mb-1 group-hover:text-primary transition-colors">
+                    {product.name}
+                  </h3>
+                  
+                  <p className="text-xs text-muted-foreground font-light line-clamp-1">
+                    View Details
+                  </p>
                 </div>
 
-                {/* Icon Panah di Kanan Bawah */}
-                <div className="absolute bottom-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:rotate-[-45deg] border border-white/10 z-20">
-                  <ArrowRight className="text-white w-4 h-4" />
+                {/* Arrow Icon */}
+                <div className="absolute bottom-6 right-6 w-10 h-10 rounded-full bg-background/80 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:rotate-[-45deg] border border-border text-foreground z-20">
+                  <ArrowRight className="w-4 h-4 text-primary" />
                 </div>
               </div>
             </Link>
@@ -123,8 +120,8 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
         {/* Empty State */}
         {products?.length === 0 && (
-          <div className="text-center py-20 border border-[#262626] bg-[#0d0d0d] rounded-2xl">
-            <p className="text-[#999999] font-mono text-xs uppercase tracking-widest">Archive coming soon.</p>
+          <div className="text-center py-20 border border-border bg-card rounded-2xl">
+            <p className="text-muted-foreground font-mono text-xs uppercase tracking-widest">Archive coming soon.</p>
           </div>
         )}
 

@@ -5,7 +5,7 @@ import * as THREE from "three"
 
 /**
  * Three.js Procedural Silk Cloth Simulation with Dynamic Cursor Ripples
- * Inspired by WebGL couture showcases (ThreeUI, mesh3d.gallery)
+ * Adapts to both Light (Alabaster Linen) and Dark (Espresso Obsidian) atelier modes.
  */
 export function SilkClothCanvas() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -34,18 +34,38 @@ export function SilkClothCanvas() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     container.appendChild(renderer.domElement)
 
-    // Cloth Plane Geometry (curved silk sheet)
+    // Check initial dark mode
+    const isDark = document.documentElement.classList.contains("dark")
+
+    // Theme color palettes
+    const darkPalette = {
+      dark: new THREE.Color("#11100F"),
+      silk: new THREE.Color("#1c1a17"),
+      gold: new THREE.Color("#d49b35"),
+      highlight: new THREE.Color("#f8e7c5"),
+    }
+
+    const lightPalette = {
+      dark: new THREE.Color("#faf8f5"),
+      silk: new THREE.Color("#ede7dc"),
+      gold: new THREE.Color("#c59b27"),
+      highlight: new THREE.Color("#ffffff"),
+    }
+
+    const initialPalette = isDark ? darkPalette : lightPalette
+
+    // Cloth Plane Geometry
     const geometry = new THREE.PlaneGeometry(18, 12, 100, 80)
 
-    // Custom Shader Material with Realistic Drape and Cursor Interaction
+    // Custom Shader Material
     const customMaterial = new THREE.ShaderMaterial({
       uniforms: {
         uTime: { value: 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
-        uColorDark: { value: new THREE.Color("#050505") },
-        uColorSilk: { value: new THREE.Color("#1a150f") },
-        uColorGold: { value: new THREE.Color("#e0a338") },
-        uColorHighlight: { value: new THREE.Color("#fce2a6") },
+        uColorDark: { value: initialPalette.dark.clone() },
+        uColorSilk: { value: initialPalette.silk.clone() },
+        uColorGold: { value: initialPalette.gold.clone() },
+        uColorHighlight: { value: initialPalette.highlight.clone() },
       },
       vertexShader: `
         uniform float uTime;
@@ -59,12 +79,12 @@ export function SilkClothCanvas() {
           vUv = uv;
           vec3 pos = position;
           
-          // Organic undulating silk folds (varying frequencies)
+          // Organic undulating silk folds
           float wave1 = sin(pos.x * 0.75 + uTime * 0.9) * 0.7;
           float wave2 = cos(pos.y * 1.1 + uTime * 0.75) * 0.6;
           float wave3 = sin((pos.x + pos.y) * 1.4 + uTime * 0.6) * 0.4;
           
-          // Cursor displacement wave: creates a tactile ripple when pointer moves
+          // Cursor displacement wave
           vec2 mouseWorld = vec2(uMouse.x * 7.5, uMouse.y * 4.5);
           float mouseDist = length(pos.xy - mouseWorld);
           float ripple = sin(mouseDist * 3.5 - uTime * 4.0) * exp(-mouseDist * 0.6) * 0.75;
@@ -95,7 +115,7 @@ export function SilkClothCanvas() {
         varying float vFresnel;
 
         void main() {
-          // Specular directional grazing light simulating Italian wool/silk luster
+          // Specular directional grazing light simulating luxury textiles
           vec3 lightDir = normalize(vec3(0.5, 0.8, 1.0));
           float diff = max(dot(vNormal, lightDir), 0.0);
 
@@ -104,7 +124,6 @@ export function SilkClothCanvas() {
           float threadY = sin(vUv.y * 240.0);
           float thread = (threadX * threadY) * 0.08;
 
-          // Color composition: Noir fabric -> Silk sheen -> Gold grazing edges
           vec3 base = mix(uColorDark, uColorSilk, diff * 0.85);
           vec3 goldSheen = mix(uColorGold, uColorHighlight, vFresnel);
           vec3 finalColor = base + (goldSheen * (vFresnel * 1.6 + max(vElevation * 0.5, 0.0) + thread));
@@ -125,6 +144,21 @@ export function SilkClothCanvas() {
     mesh.rotation.x = -Math.PI * 0.14
     mesh.rotation.z = -Math.PI * 0.03
     scene.add(mesh)
+
+    // Listen for theme changes on <html>
+    const observer = new MutationObserver(() => {
+      const darkNow = document.documentElement.classList.contains("dark")
+      const targetPalette = darkNow ? darkPalette : lightPalette
+      customMaterial.uniforms.uColorDark.value.copy(targetPalette.dark)
+      customMaterial.uniforms.uColorSilk.value.copy(targetPalette.silk)
+      customMaterial.uniforms.uColorGold.value.copy(targetPalette.gold)
+      customMaterial.uniforms.uColorHighlight.value.copy(targetPalette.highlight)
+    })
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    })
 
     // Interactive pointer interpolation
     const mouse = new THREE.Vector2(0, 0)
@@ -156,12 +190,10 @@ export function SilkClothCanvas() {
       animationFrameId = requestAnimationFrame(animate)
       const elapsedTime = clock.getElapsedTime()
 
-      // Smooth mouse lerp
       mouse.lerp(targetMouse, 0.06)
       customMaterial.uniforms.uMouse.value.copy(mouse)
       customMaterial.uniforms.uTime.value = elapsedTime
 
-      // Gentle undulating tilt
       mesh.rotation.y = Math.sin(elapsedTime * 0.2) * 0.06 + mouse.x * 0.06
       mesh.rotation.x = -Math.PI * 0.14 + mouse.y * 0.05
 
@@ -172,6 +204,7 @@ export function SilkClothCanvas() {
 
     // Cleanup
     return () => {
+      observer.disconnect()
       cancelAnimationFrame(animationFrameId)
       window.removeEventListener("pointermove", handlePointerMove)
       window.removeEventListener("resize", handleResize)
@@ -187,7 +220,7 @@ export function SilkClothCanvas() {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-100"
+      className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-90 transition-opacity"
       aria-hidden="true"
     />
   )
