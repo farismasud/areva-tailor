@@ -23,19 +23,19 @@ const ARCHIVE_DETAILS: Record<string, ArchiveMeta> = {
   "jas-luxury": {
     subtitle: "Custom Two-Piece Bespoke Commission",
     fabricBadge: "Scabal Super 150s Wool",
-    timeframe: "3-4 Minggu Pengerjaan",
+    timeframe: "3-4 Weeks Lead Time",
     silhouette: "Full Floating Canvas • Hand-Rolled Lapel",
   },
   "batik-formal": {
     subtitle: "Bespoke Long-Sleeve Silk Shirt",
-    fabricBadge: "100% Sutra Mulberry Tulis",
-    timeframe: "2-3 Minggu Pengerjaan",
+    fabricBadge: "Hand-Drawn Mulberry Silk",
+    timeframe: "2-3 Weeks Lead Time",
     silhouette: "Pattern-Matched Pocket • French Seams",
   },
   "kemeja": {
     subtitle: "Tailored Executive Dress Shirt",
     fabricBadge: "Thomas Mason 140s Cotton",
-    timeframe: "1-2 Minggu Pengerjaan",
+    timeframe: "1-2 Weeks Lead Time",
     silhouette: "Mother of Pearl • Single-Needle Stitch",
   },
 }
@@ -46,6 +46,12 @@ const CATEGORIES = [
   { label: "Silk Batik", value: "batik" },
   { label: "Tailored Shirt", value: "kemeja" },
 ]
+
+const CATEGORY_DISPLAY: Record<string, string> = {
+  jas: "SUITING",
+  batik: "SILK BATIK",
+  kemeja: "SHIRTING",
+}
 
 export function ProductCatalogClient({ products, initialCategory = "all" }: ProductCatalogClientProps) {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory)
@@ -82,7 +88,7 @@ export function ProductCatalogClient({ products, initialCategory = "all" }: Prod
           Sartorial Collections
         </h1>
         <p className="text-muted-foreground text-xs sm:text-sm font-light leading-relaxed max-w-lg mx-auto">
-          Koleksi arsip busana bespoke karya master tailor kami, dirancang eksklusif satu per satu mengikuti postur dan gerak alami tubuh Anda.
+          An archival selection of handcrafted bespoke suiting, silk batiks, and executive shirts tailored to your individual anatomical posture.
         </p>
       </motion.div>
 
@@ -128,7 +134,7 @@ export function ProductCatalogClient({ products, initialCategory = "all" }: Prod
             const meta = ARCHIVE_DETAILS[product.slug] || {
               subtitle: "Handcrafted Atelier Commission",
               fabricBadge: "European Wool & Silk Blend",
-              timeframe: "3 Minggu Pengerjaan",
+              timeframe: "3-4 Weeks Lead Time",
               silhouette: "Bespoke Anatomical Cut",
             }
 
@@ -176,7 +182,7 @@ export function ProductCatalogClient({ products, initialCategory = "all" }: Prod
                         {/* Eyebrow: Category & Cloth Origin */}
                         <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em]">
                           <span className="text-primary font-semibold">
-                            {product.category || "ATELIER"}
+                            {product.category ? (CATEGORY_DISPLAY[product.category.toLowerCase()] || product.category) : "ATELIER"}
                           </span>
                           <span className="text-border">•</span>
                           <span className="text-foreground/75 font-medium tracking-[0.14em]">
@@ -201,7 +207,7 @@ export function ProductCatalogClient({ products, initialCategory = "all" }: Prod
                           {meta.timeframe}
                         </span>
                         <span className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-[0.18em] text-foreground group-hover:text-primary font-medium transition-colors">
-                          <span>Detail Karya</span>
+                          <span>View Piece</span>
                           <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
                         </span>
                       </div>
@@ -218,7 +224,7 @@ export function ProductCatalogClient({ products, initialCategory = "all" }: Prod
       {filteredProducts.length === 0 && (
         <div className="text-center py-20 border border-border/60 bg-card rounded-2xl">
           <p className="text-muted-foreground font-mono text-xs uppercase tracking-widest">
-            Koleksi arsip sedang dalam proses kurasi.
+            Archival collection currently being curated.
           </p>
         </div>
       )}
@@ -233,16 +239,16 @@ export function ProductCatalogClient({ products, initialCategory = "all" }: Prod
       >
         <div className="space-y-1">
           <p className="font-serif text-base sm:text-lg text-foreground">
-            Setiap karya dirancang eksklusif melalui tahapan fitting privat.
+            Each bespoke garment is individually sculpted through private fittings.
           </p>
           <p className="text-xs text-muted-foreground font-light">
-            Kunjungi atelier kami di Jakarta atau jadwalkan fitting pribadi di kediaman Anda.
+            Visit our Jakarta atelier or schedule an executive consultation at your residence.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           <a
-            href="https://wa.me/6281234567890?text=Halo%20Areva%20Tailor,%20saya%20ingin%20konsultasi%20pembuatan%20setelan%20bespoke."
+            href="https://wa.me/6281234567890?text=Hello%20Areva%20Atelier,%20I%20would%20like%20to%20inquire%20about%20a%20bespoke%20commission."
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary hover:bg-gold-dark text-primary-foreground text-xs font-serif font-bold tracking-wider uppercase transition-colors shadow-xs"

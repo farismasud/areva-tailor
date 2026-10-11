@@ -42,68 +42,68 @@ const EXTENDED_DETAILS: Record<string, DetailedArchiveData> = {
   "jas-luxury": {
     title: "Executive Bespoke Suit",
     subtitle: "Custom Two-Piece Commission",
-    narrative: "Dirancang khusus untuk para tokoh, eksekutif, dan figur publik yang mengutamakan wibawa, kenyamanan bergerak, dan siluet presisi. Menggunakan konstruksi floating horsehair canvas tanpa lem sintetis, jas ini akan mengikuti lekuk tubuh Anda secara alami dan semakin nyaman seiring waktu.",
+    narrative: "Tailored specifically for leaders, dignitaries, and executives who value timeless dignity, natural ease of movement, and anatomical precision. Featuring a full floating horsehair canvas without fusible adhesives, this suit breathes freely and sculpts itself to your body over years of wear.",
     fabricTitle: "Scabal of London Super 150s Pure Wool",
-    fabricDesc: "Ditenun di Huddersfield, Inggris, dengan kehalusan benang Super 150s yang jatuh elegan, tahan kusut, dan memiliki kilau sutra alami tanpa kesan berlebihan.",
+    fabricDesc: "Woven in Huddersfield, England, with Super 150s yarn that drapes with stately composure, resists creases, and offers a quiet, natural lustre without sheen.",
     specs: [
-      { label: "Konstruksi", value: "Full Floating Canvas", icon: ShieldCheck },
-      { label: "Bahan Pilihan", value: "Scabal / Loro Piana", icon: Sparkles },
-      { label: "Fitting", value: "3 Sesi Ukur & Baste", icon: Scissors },
-      { label: "Waktu Jahit", value: "3-4 Minggu", icon: Clock },
+      { label: "Canvas", value: "Full Floating Canvas", icon: ShieldCheck },
+      { label: "Textile", value: "Scabal / Loro Piana", icon: Sparkles },
+      { label: "Fittings", value: "3 Baste & Structure Sessions", icon: Scissors },
+      { label: "Lead Time", value: "3-4 Weeks", icon: Clock },
     ],
     craftHighlights: [
-      "Pola kertas pribadi dirancang dari 40+ titik ukur anatomi tubuh",
-      "Kanvas bulu kuda alami dijahit tangan tanpa perekat sintetis (fusible-free)",
-      "Lapel hand-rolled dengan pick-stitching halus dan lubang kancing fungsional",
-      "Kancing tanduk kerbau alami (natural horn) dan lapisan furing sutra bemberg",
-      "Termasuk penyesuaian gratis seumur hidup untuk perubahan postur minor",
+      "Individually drafted paper pattern generated from 40+ anatomical measurements",
+      "Pure horsehair canvas hand-stitched without synthetic fusing (fusible-free)",
+      "Hand-rolled lapel featuring delicate pick-stitching and active buttonhole",
+      "Natural buffalo horn buttons paired with breathable Bemberg silk lining",
+      "Complimentary lifetime alteration support for minor posture adjustments",
     ],
-    leadTime: "3-4 Minggu Pengerjaan Tangan",
-    fittingStages: "3 Tahap (Ukur Anatomi, Baste Fitting, Final Delivery)",
+    leadTime: "3-4 Weeks Handcrafted",
+    fittingStages: "3 Stages (Measurement, Baste Prototype, Final Handover)",
   },
   "batik-formal": {
     title: "Presidential Silk Batik",
     subtitle: "Bespoke Long-Sleeve Silk Shirt",
-    narrative: "Perpaduan warisan adiluhung nusantara dengan ketelitian teknik tailoring modern. Setiap helai batik canting tulis tangan dipotong dengan perhitungan motif presisi (pattern-matched) pada saku dan placket kancing depan agar komposisi motif tetap utuh dan agung.",
-    fabricTitle: "100% Sutra Mulberry Asli Canting Tulis",
-    fabricDesc: "Sutra mulberry berkualitas tinggi dengan tekstur sejuk dan jatuh lembut di kulit, dibatik menggunakan canting malam oleh perajin maestro batik tradisi.",
+    narrative: "A seamless synthesis of noble Indonesian textile heritage and Savile Row precision tailoring. Each piece of hand-drawn canting silk batik is mapped and pattern-matched across the front placket, chest pocket, and collar to preserve the uninterrupted majesty of the motif.",
+    fabricTitle: "100% Hand-Drawn Mulberry Silk",
+    fabricDesc: "Finest mulberry silk offering a cooling drape against the skin, hand-drawn with hot wax canting by heritage master artisans in Central Java.",
     specs: [
-      { label: "Konstruksi", value: "Pattern-Matched Placket", icon: ShieldCheck },
-      { label: "Bahan", value: "100% Sutra Mulberry Tulis", icon: Sparkles },
-      { label: "Fitting", value: "2 Sesi (Ukur & Final)", icon: Scissors },
-      { label: "Waktu Jahit", value: "2-3 Minggu", icon: Clock },
+      { label: "Tailoring", value: "Pattern-Matched Placket", icon: ShieldCheck },
+      { label: "Textile", value: "100% Hand-Drawn Silk", icon: Sparkles },
+      { label: "Fittings", value: "2 Private Sessions", icon: Scissors },
+      { label: "Lead Time", value: "2-3 Weeks", icon: Clock },
     ],
     craftHighlights: [
-      "Penyambungan motif batik simetris pada saku depan, manset, dan kerah",
-      "Jahitan stik balik Prancis (French seams) halus berkekuatan tinggi tanpa obras kasar",
-      "Placket kancing tersembunyi (hidden placket) untuk kesan rapi dan formal kenegaraan",
-      "Struktur kerah kokoh menggunakan interlining katun Jerman yang tidak mudah mengkerut",
-      "Kancing cangkang kerang mutiara asli (Mother of Pearl) berukir halus",
+      "Flawless motif continuity across front breast pocket, cuffs, and collar",
+      "High-tensile French seams hand-finished without raw overlock edging",
+      "Fly-front hidden button placket designed for formal state protocols",
+      "Structured collar core lined with premium German interlining",
+      "Hand-carved Australian Mother of Pearl shell buttons",
     ],
-    leadTime: "2-3 Minggu Pengerjaan Tangan",
-    fittingStages: "2 Tahap (Ukur Tubuh, Final Fitting)",
+    leadTime: "2-3 Weeks Handcrafted",
+    fittingStages: "2 Stages (Measurement, Final Fitting)",
   },
   "kemeja": {
     title: "Executive Tailored Shirt",
     subtitle: "Custom Egyptian Cotton Shirt",
-    narrative: "Kemeja formal dengan standar sartorial tertinggi untuk pemakaian harian eksekutif dan pertemuan bisnis penting. Dibuat dengan jahitan jarum tunggal (single-needle) berkerapatan 22 jahitan per inci untuk garis jahitan yang sangat rapi dan kokoh.",
+    narrative: "Executive dress shirt engineered to the highest sartorial benchmarks for everyday boardroom leadership. Crafted with single-needle tailoring at 22 stitches per inch for unmatched clean seam strength and longevity.",
     fabricTitle: "Thomas Mason 140s Giza Egyptian Cotton",
-    fabricDesc: "Kapas Mesir Giza tenunan Albini Group Italia dengan serat ekstra panjang yang memberikan rasa sejuk maksimal, sirkulasi udara superior, dan daya tahan cuci bertahun-tahun.",
+    fabricDesc: "Giza Egyptian cotton woven by Italy's Albini Group with extra-long staple fibers, delivering peerless thermal comfort, breathability, and resilient wash recovery.",
     specs: [
-      { label: "Jahitan", value: "Single-Needle 22 SPI", icon: ShieldCheck },
-      { label: "Bahan", value: "Giza 140s 2-Ply Cotton", icon: Sparkles },
-      { label: "Fitting", value: "1-2 Sesi Ukur", icon: Scissors },
-      { label: "Waktu Jahit", value: "1-2 Minggu", icon: Clock },
+      { label: "Stitching", value: "Single-Needle 22 SPI", icon: ShieldCheck },
+      { label: "Textile", value: "Giza 140s 2-Ply Cotton", icon: Sparkles },
+      { label: "Fittings", value: "1-2 Sessions", icon: Scissors },
+      { label: "Lead Time", value: "1-2 Weeks", icon: Clock },
     ],
     craftHighlights: [
-      "Pilihan kerah kustom: Semi-Spread, Cutaway, Mandarin, atau Tab Collar",
-      "Kancing cangkang kerang mutiara Australia (Australian Mother of Pearl)",
-      "Penyangga kerah kuningan yang dapat dilepas (removable brass collar stays)",
-      "Manset miring atau bulat dengan opsi monogram inisial nama bordir tangan",
-      "Gusset penguat di sudut samping bawah untuk kekuatan tahan robek",
+      "Custom collar selection: Semi-Spread, Cutaway, Mandarin, or Classic Point",
+      "Genuine Australian Mother of Pearl shell buttons",
+      "Removable solid brass collar stays for all-day lapel poise",
+      "Hand-embroidered personal monogram option on angled or rounded cuffs",
+      "Reinforced hem side gussets for lasting seam durability",
     ],
-    leadTime: "1-2 Minggu Pengerjaan",
-    fittingStages: "1-2 Tahap (Ukur Tubuh, Final Fitting)",
+    leadTime: "1-2 Weeks Tailored",
+    fittingStages: "1-2 Stages (Measurement, Handover)",
   },
 }
 
@@ -123,7 +123,13 @@ export async function generateMetadata({ params }: ProductDetailProps) {
   }
 }
 
-export default async function ProductDetail({ params }: ProductDetailProps) {
+const CATEGORY_DISPLAY: Record<string, string> = {
+  jas: "SUITING",
+  batik: "SILK BATIK",
+  kemeja: "SHIRTING",
+}
+
+export default async function ProductDetailPage({ params }: ProductDetailProps) {
   const { slug } = await params
   const { data: product } = await supabase
     .from('products')
@@ -143,26 +149,26 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
   const meta = EXTENDED_DETAILS[slug] || {
     title: product.name,
     subtitle: "Custom Bespoke Commission",
-    narrative: product.description || "Setelan eksklusif rancangan Areva Tailor Jakarta, dibuat tangan sesuai ukuran anatomi Anda.",
-    fabricTitle: "Premium Tailoring Cloth",
-    fabricDesc: "Bahan pilihan terbaik dengan karakter serat alami bernapas.",
+    narrative: product.description || "Exclusive bespoke commission handcrafted to your individual anatomical posture by Areva Atelier.",
+    fabricTitle: "Curated Atelier Cloth",
+    fabricDesc: "Finest natural fibers offering breathability, natural drape, and lasting comfort.",
     specs: [
-      { label: "Konstruksi", value: "Bespoke Cut", icon: ShieldCheck },
-      { label: "Bahan", value: "Selected Wool / Silk", icon: Sparkles },
-      { label: "Fitting", value: "2-3 Sesi", icon: Scissors },
-      { label: "Lead Time", value: "3 Minggu", icon: Clock },
+      { label: "Structure", value: "Bespoke Anatomical Cut", icon: ShieldCheck },
+      { label: "Textile", value: "Selected Wool / Silk", icon: Sparkles },
+      { label: "Fittings", value: "2-3 Private Sessions", icon: Scissors },
+      { label: "Lead Time", value: "3-4 Weeks", icon: Clock },
     ],
     craftHighlights: [
-      "Pola kertas dibuat khusus dari ukuran tubuh",
-      "Pengerjaan tangan oleh master tailor berpengalaman",
-      "Bahan alami berkualitas tinggi",
+      "Custom paper pattern drafted exclusively from body measurements",
+      "Handcrafted by master tailors with decades of experience",
+      "High-grade natural textiles tailored without synthetic fusing",
     ],
-    leadTime: "3 Minggu Pengerjaan",
-    fittingStages: "3 Tahap",
+    leadTime: "3-4 Weeks Handcrafted",
+    fittingStages: "3 Stages (Measurement, Prototype, Handover)",
   }
 
   const whatsappMessage = encodeURIComponent(
-    `Halo Areva Tailor Atelier, saya tertarik dengan koleksi ${meta.title} (${product.name}). Saya ingin berkonsultasi mengenai pemilihan bahan dan jadwal janji temu.`
+    `Hello Areva Atelier, I would like to inquire about commissioning the ${meta.title} (${product.name}). I wish to discuss cloth selection and arrange a private consultation.`
   )
 
   return (
@@ -178,7 +184,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             <div className="p-2 rounded-full border border-border group-hover:border-primary transition-colors bg-card">
               <ArrowLeft size={13} />
             </div>
-            <span>Kembali ke Koleksi</span>
+            <span>Return to Archive</span>
           </Link>
         </div>
 
@@ -218,7 +224,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-[10px] font-mono font-semibold tracking-[0.25em] uppercase">
                 <span>BESPOKE ARCHIVE</span>
                 <span>•</span>
-                <span>{product.category || "ATELIER"}</span>
+                <span>{product.category ? (CATEGORY_DISPLAY[product.category.toLowerCase()] || product.category) : "ATELIER"}</span>
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-foreground font-normal leading-tight">
@@ -239,7 +245,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             <div className="p-5 rounded-2xl bg-card border border-border space-y-1.5">
               <div className="flex items-center gap-2 text-primary font-mono text-xs font-semibold uppercase tracking-wider">
                 <Sparkles size={14} />
-                <span>Rekomendasi Bahan Pilihan</span>
+                <span>Curated Cloth Selection</span>
               </div>
               <p className="text-sm font-serif text-foreground font-medium">
                 {meta.fabricTitle}
@@ -272,7 +278,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             {/* Craftsmanship Blueprint Checklist */}
             <div className="space-y-3 pt-2">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-foreground font-semibold block">
-                Detail Presisi Pengerjaan:
+                Craftsmanship Blueprint:
               </span>
               <div className="space-y-2">
                 {meta.craftHighlights.map((highlight, idx) => (
@@ -297,7 +303,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                   className="w-full bg-primary hover:bg-gold-dark text-primary-foreground font-serif text-xs font-bold uppercase tracking-[0.2em] h-12 rounded-full cursor-pointer shadow-[0_4px_18px_rgba(180,133,32,0.25)] border-none flex items-center justify-center gap-2"
                 >
                   <MessageCircle size={15} />
-                  <span>Konsultasi WhatsApp</span>
+                  <span>WhatsApp Concierge</span>
                 </Button>
               </a>
               
@@ -307,7 +313,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                   size="lg" 
                   className="w-full border-border text-foreground hover:border-primary hover:text-primary hover:bg-card font-serif text-xs font-semibold uppercase tracking-[0.2em] h-12 rounded-full bg-card cursor-pointer"
                 >
-                  <span>Reservasi Jadwal Fitting</span>
+                  <span>Reserve Fitting</span>
                 </Button>
               </Link>
             </div>
@@ -324,14 +330,14 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                   Atelier Archive
                 </span>
                 <h3 className="text-2xl font-serif text-foreground mt-1">
-                  Koleksi Pilihan Lainnya
+                  Related Commissions
                 </h3>
               </div>
               <Link 
                 href="/products" 
                 className="text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors pb-0.5 border-b border-border"
               >
-                Lihat Semua Koleksi
+                View Full Archive
               </Link>
             </div>
 
@@ -354,7 +360,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className="text-[10px] font-mono text-primary uppercase tracking-wider">
-                      {rel.category}
+                      {rel.category ? (CATEGORY_DISPLAY[rel.category.toLowerCase()] || rel.category) : "ARCHIVE"}
                     </span>
                     <h4 className="text-base font-serif text-foreground group-hover:text-primary transition-colors truncate">
                       {rel.name}

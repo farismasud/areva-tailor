@@ -102,7 +102,7 @@ export default function Lab3DPage() {
               <span className="font-mono text-[10px] text-primary uppercase tracking-[0.3em]">Bespoke 3D Exploration</span>
               <h1 className="text-2xl sm:text-3xl font-serif text-foreground mt-1">Sartorial 3D Concepts</h1>
               <p className="text-xs text-muted-foreground font-light leading-relaxed mt-2">
-                Pilih konsep 3D di bawah ini untuk melihat pergerakan fisik kain, partikel, anatomi torso, gunting tailor, atau struktur tenun benang secara real-time.
+                Select a 3D concept below to explore real-time textile simulations, particle kinetics, anatomical wireframes, and woven lattice structures.
               </p>
             </div>
 
@@ -143,9 +143,9 @@ export default function Lab3DPage() {
 
           <div className="pt-6 border-t border-border mt-6">
             <div className="p-4 rounded-xl bg-card border border-border space-y-1.5">
-              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Tips Interaksi</span>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Interaction Guide</span>
               <p className="text-xs text-muted-foreground font-light leading-relaxed">
-                Arahkan kursor mouse ke kanvas sebelah kanan. Setiap model memiliki kurva physics dan specular lighting yang responsif.
+                Move your cursor across the right viewport. Each model features responsive physics curves, mouse turbulence, and dynamic specular lighting.
               </p>
             </div>
           </div>

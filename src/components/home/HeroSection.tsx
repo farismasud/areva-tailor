@@ -212,7 +212,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
               <span className="font-mono text-xs text-primary uppercase tracking-[0.25em]">01 / Perfect Fit</span>
               <h3 className="text-xl font-serif text-foreground tracking-wide">Custom Paper Pattern</h3>
               <p className="text-muted-foreground text-sm leading-relaxed font-light">
-                Setiap jas dimulai dari pola kertas yang digambar tangan secara individual sesuai lekuk bahu, postur tulang, dan gerak alami tubuh Anda.
+                Every garment begins with an individual hand-drafted paper pattern sculpted around your exact shoulder slope, posture, and natural movement.
               </p>
             </SpotlightCard>
 
@@ -220,7 +220,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
               <span className="font-mono text-xs text-primary uppercase tracking-[0.25em]">02 / Durability</span>
               <h3 className="text-xl font-serif text-foreground tracking-wide">Full-Canvas Structure</h3>
               <p className="text-muted-foreground text-sm leading-relaxed font-light">
-                Konstruksi kanvas bulu kuda alami dijahit tangan tanpa lem sintetis, memungkinkan jas bernapas dan membentuk postur tubuh makin sempurna seiring waktu.
+                Natural floating horsehair canvas hand-stitched without synthetic fusing, allowing the suit to breathe and mold gracefully to your torso over time.
               </p>
             </SpotlightCard>
 
@@ -228,7 +228,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
               <span className="font-mono text-xs text-primary uppercase tracking-[0.25em]">03 / Materials</span>
               <h3 className="text-xl font-serif text-foreground tracking-wide">World-Class Fabrics</h3>
               <p className="text-muted-foreground text-sm leading-relaxed font-light">
-                Koleksi wool murni pilihan dari pabrik legendaris Eropa (Scabal, Loro Piana), dipadukan dengan kain sutra batik canting tulis nusantara asli.
+                Select pure wools from storied European mills alongside authentic hand-drawn Indonesian silk batik tailored to executive standards.
               </p>
             </SpotlightCard>
 

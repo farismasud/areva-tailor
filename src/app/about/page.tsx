@@ -26,13 +26,13 @@ export default function AboutPage() {
           
           <div className="text-muted-foreground leading-relaxed font-light space-y-6 text-base sm:text-lg">
             <p>
-              Berawal di Jakarta, <strong className="text-foreground font-medium">Areva International Tailor</strong> dipercaya oleh para tokoh nasional, pejabat tinggi negara, pengusaha ternama, hingga jajaran direksi korporasi besar dalam merancang setelan jas formal dan kemeja batik eksklusif.
+              Founded in Jakarta, <strong className="text-foreground font-medium">Areva International Tailor</strong> has long been entrusted by state dignitaries, prominent entrepreneurs, and corporate executives to create bespoke formal suiting and exclusive silk batiks.
             </p>
             <p>
-              Kami mengutamakan presisi potongan badan dan kenyamanan pemakaian jangka panjang. Setiap pakaian dibuat secara individual mulai dari pengukuran mendalam, pembuatan pola kertas manual, hingga pemasangan furing dan kanvas kain alami tanpa lem industrial.
+              We prioritize anatomical cut precision and enduring wearer comfort. Every commission is individually developed from comprehensive anatomical measurements and hand-drafted paper patterns to natural floating canvas assembly crafted entirely without synthetic adhesives.
             </p>
             <p>
-              Dengan koleksi bahan premium dunia seperti wool murni Scabal dan Loro Piana, dipadukan dengan kain sutra batik canting tulis asli nusantara, kami menghadirkan penampilan berwibawa yang mencerminkan karakter kepemimpinan Anda.
+              Drawing from an archive of the world&apos;s most prestigious textile mills—including pure wools from Scabal and Loro Piana alongside authentic hand-drawn Indonesian silk batik—we deliver a dignified silhouette that reflects your executive presence.
             </p>
           </div>
 

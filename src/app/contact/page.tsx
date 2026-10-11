@@ -20,7 +20,7 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!name || !phone) {
-      setErrorMessage("Nama dan nomor WhatsApp wajib diisi.")
+      setErrorMessage("Name and WhatsApp contact number are required.")
       return
     }
 
@@ -66,7 +66,7 @@ export default function ContactPage() {
     { id: "bespoke-suit", label: "Bespoke Suit" },
     { id: "wedding", label: "Wedding Attire" },
     { id: "batik", label: "Premium Batik" },
-    { id: "alteration", label: "Alteration / Vermak" },
+    { id: "alteration", label: "Garment Alteration" },
   ]
 
   return (
