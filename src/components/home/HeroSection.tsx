@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowUpRight, CheckCircle2, Sparkles, Award, ShieldCheck, Ruler, Scissors } from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { SilkClothCanvas } from "@/components/home/SilkClothCanvas"
 import { BespokeProcessSection } from "@/components/home/BespokeProcessSection"
 import { FabricHeritageSection } from "@/components/home/FabricHeritageSection"
@@ -52,23 +52,7 @@ function MagneticTiltCard({ product }: { product: Product | null }) {
   }
 
   return (
-    <div className="relative mx-auto max-w-[420px] w-full py-4">
-      {/* Decorative Floating Badge - Top Left */}
-      <motion.div 
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        className="hidden sm:flex absolute -top-1 -left-4 z-30 p-3 rounded-2xl bg-card/95 backdrop-blur-md border border-border shadow-[0_4px_20px_rgba(0,0,0,0.06)] items-center gap-3"
-      >
-        <div className="w-8 h-8 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary shrink-0">
-          <Sparkles size={15} />
-        </div>
-        <div className="text-left">
-          <p className="text-[10px] font-mono uppercase tracking-wider text-primary font-semibold">Master Tailor Cut</p>
-          <p className="text-xs font-serif text-foreground font-medium">Scabal Super 150s Wool</p>
-        </div>
-      </motion.div>
-
+    <div className="relative mx-auto max-w-[390px] w-full">
       {/* Main 3D Card */}
       <div
         ref={cardRef}
@@ -114,22 +98,6 @@ function MagneticTiltCard({ product }: { product: Product | null }) {
           </div>
         </div>
       </div>
-
-      {/* Decorative Floating Badge - Bottom Right */}
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="hidden sm:flex absolute -bottom-2 -right-4 z-30 p-3 rounded-2xl bg-card/95 backdrop-blur-md border border-border shadow-[0_4px_20px_rgba(0,0,0,0.06)] items-center gap-3"
-      >
-        <div className="w-8 h-8 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary shrink-0">
-          <Award size={15} />
-        </div>
-        <div className="text-left">
-          <p className="text-[10px] font-mono uppercase tracking-wider text-primary font-semibold">Floating Canvas</p>
-          <p className="text-xs font-serif text-foreground font-medium">Zero Industrial Glue</p>
-        </div>
-      </motion.div>
     </div>
   )
 }
@@ -140,7 +108,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground transition-colors duration-300">
       {/* === HERO SECTION === */}
-      <section className="relative min-h-[calc(100vh-5rem)] flex items-center overflow-hidden border-b border-border py-12 lg:py-20">
+      <section className="relative min-h-[calc(100vh-5rem)] flex items-center overflow-hidden border-b border-border py-8 lg:py-12">
         {/* Three.js Interactive Silk Wave Shader */}
         <SilkClothCanvas />
 
@@ -180,31 +148,15 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
 
               {/* Subhead Paragraph */}
               <p className="text-sm sm:text-base text-muted-foreground font-light leading-relaxed max-w-xl">
-                Menghadirkan kenyamanan, wibawa, dan siluet presisi untuk para tokoh dan eksekutif. Setiap setelan dirancang dari nol dengan kanvas kuda alami (floating canvas) tanpa lem industri dan bahan wool murni dari Scabal of London serta Loro Piana Italia.
+                Experience world-class custom tailoring made to your exact measurements. Crafted by master tailors with premium Italian and English wools from Scabal and Loro Piana.
               </p>
-
-              {/* Craftsmanship Pillars (Solves the empty hero feeling) */}
-              <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card/85 border border-border text-foreground/90 font-medium">
-                  <CheckCircle2 size={13} className="text-primary" />
-                  <span>Floating Horsehair Canvas</span>
-                </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card/85 border border-border text-foreground/90 font-medium">
-                  <CheckCircle2 size={13} className="text-primary" />
-                  <span>Pola Kertas Individual</span>
-                </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card/85 border border-border text-foreground/90 font-medium">
-                  <CheckCircle2 size={13} className="text-primary" />
-                  <span>Private Fitting Concierge</span>
-                </div>
-              </div>
 
               {/* Action Buttons with Magnet Micro-Interaction */}
               <motion.div 
                 initial={reduce ? false : { opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-3"
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
               >
                 {/* Primary Button */}
                 <Magnet disabled={false} magnetStrength={0.25}>
@@ -233,44 +185,6 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
                     </Button>
                   </Link>
                 </Magnet>
-              </motion.div>
-
-              {/* Structured Sartorial Metrics */}
-              <motion.div 
-                initial={reduce ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.45 }}
-                className="pt-6 border-t border-border grid grid-cols-3 gap-3 sm:gap-5 max-w-xl"
-              >
-                <div className="p-3 sm:p-4 rounded-xl bg-card/75 border border-border shadow-xs">
-                  <div className="flex items-center gap-1.5 text-primary">
-                    <Ruler size={14} />
-                    <span className="text-xl sm:text-2xl font-serif text-foreground font-medium">40+</span>
-                  </div>
-                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono block mt-1">
-                    Titik Ukur Anatomi
-                  </span>
-                </div>
-
-                <div className="p-3 sm:p-4 rounded-xl bg-card/75 border border-border shadow-xs">
-                  <div className="flex items-center gap-1.5 text-primary">
-                    <ShieldCheck size={14} />
-                    <span className="text-xl sm:text-2xl font-serif text-foreground font-medium">100%</span>
-                  </div>
-                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono block mt-1">
-                    Floating Canvas
-                  </span>
-                </div>
-
-                <div className="p-3 sm:p-4 rounded-xl bg-card/75 border border-border shadow-xs">
-                  <div className="flex items-center gap-1.5 text-primary">
-                    <Scissors size={14} />
-                    <span className="text-xl sm:text-2xl font-serif text-foreground font-medium">3-4</span>
-                  </div>
-                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono block mt-1">
-                    Minggu Pengerjaan
-                  </span>
-                </div>
               </motion.div>
 
             </div>
