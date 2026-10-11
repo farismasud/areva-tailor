@@ -1,24 +1,9 @@
 import type { Metadata } from "next";
-import { Cinzel, Lato } from "next/font/google"; 
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-
-const cinzel = Cinzel({ 
-  subsets: ["latin"], 
-  variable: "--font-cinzel",
-  weight: ["400", "600", "700"],
-  display: "swap",
-});
-
-const lato = Lato({ 
-  subsets: ["latin"], 
-  variable: "--font-lato",
-  weight: ["300", "400", "700"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "AREVA INTERNATIONAL TAILOR | Bespoke Craftsmanship Jakarta",
@@ -33,6 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="light" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -52,7 +39,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${cinzel.variable} ${lato.variable} font-sans min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-gold/30 selection:text-foreground`}>
+      <body className="font-sans min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-gold/30 selection:text-foreground">
         <ThemeProvider>
           <SmoothScrollProvider>
             <Navbar />
