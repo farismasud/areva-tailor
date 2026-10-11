@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useRef, useState } from "react"
+import { motion, useReducedMotion } from "motion/react"
 import Link from "next/link"
 import Image from "next/image"
-import { motion, useReducedMotion } from "motion/react"
-import { ArrowUpRight, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ArrowRight, ArrowUpRight, CheckCircle2, Sparkles, Award, ShieldCheck, Ruler, Scissors } from "lucide-react"
 import { SilkClothCanvas } from "@/components/home/SilkClothCanvas"
 import { BespokeProcessSection } from "@/components/home/BespokeProcessSection"
 import { FabricHeritageSection } from "@/components/home/FabricHeritageSection"
@@ -17,18 +17,6 @@ import type { Product } from "@/types/database.types"
 
 interface HeroSectionProps {
   featuredProducts?: Product[] | null
-}
-
-function MetricCounter({ target, suffix = "", label }: { target: number; suffix?: string; label: string }) {
-  return (
-    <div className="overflow-hidden">
-      <div className="text-xl sm:text-2xl font-mono text-foreground tracking-tight flex items-baseline">
-        <span>{target}</span>
-        <span>{suffix}</span>
-      </div>
-      <div className="text-[10px] text-muted-foreground uppercase tracking-[0.25em] font-mono mt-1">{label}</div>
-    </div>
-  )
 }
 
 function MagneticTiltCard({ product }: { product: Product | null }) {
@@ -45,15 +33,15 @@ function MagneticTiltCard({ product }: { product: Product | null }) {
     const centerX = rect.width / 2
     const centerY = rect.height / 2
 
-    const rotX = -((y - centerY) / centerY) * 10
-    const rotY = ((x - centerX) / centerX) * 10
+    const rotX = -((y - centerY) / centerY) * 8
+    const rotY = ((x - centerX) / centerX) * 8
 
     setRotateX(rotX)
     setRotateY(rotY)
     setGlarePos({
       x: (x / rect.width) * 100,
       y: (y / rect.height) * 100,
-      opacity: 0.25,
+      opacity: 0.22,
     })
   }
 
@@ -64,49 +52,84 @@ function MagneticTiltCard({ product }: { product: Product | null }) {
   }
 
   return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-        transition: "transform 0.18s cubic-bezier(0.23, 1, 0.32, 1)",
-      }}
-      className="relative mx-auto max-w-[380px] aspect-[4/5] rounded-[1.5rem] overflow-hidden border border-border bg-card group shadow-2xl cursor-pointer will-change-transform"
-    >
-      {/* Specular Glare Overlay */}
+    <div className="relative mx-auto max-w-[420px] w-full py-4">
+      {/* Decorative Floating Badge - Top Left */}
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="hidden sm:flex absolute -top-1 -left-4 z-30 p-3 rounded-2xl bg-card/95 backdrop-blur-md border border-border shadow-[0_4px_20px_rgba(0,0,0,0.06)] items-center gap-3"
+      >
+        <div className="w-8 h-8 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary shrink-0">
+          <Sparkles size={15} />
+        </div>
+        <div className="text-left">
+          <p className="text-[10px] font-mono uppercase tracking-wider text-primary font-semibold">Master Tailor Cut</p>
+          <p className="text-xs font-serif text-foreground font-medium">Scabal Super 150s Wool</p>
+        </div>
+      </motion.div>
+
+      {/* Main 3D Card */}
       <div
-        className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300"
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         style={{
-          background: `radial-gradient(circle 280px at ${glarePos.x}% ${glarePos.y}%, rgba(212,155,53,0.18), transparent 70%)`,
-          opacity: glarePos.opacity,
+          transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+          transition: "transform 0.18s cubic-bezier(0.23, 1, 0.32, 1)",
         }}
-      />
+        className="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden border border-border bg-card group shadow-[0_12px_40px_rgba(0,0,0,0.08)] cursor-pointer will-change-transform"
+      >
+        {/* Specular Glare Overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300"
+          style={{
+            background: `radial-gradient(circle 280px at ${glarePos.x}% ${glarePos.y}%, rgba(180,133,32,0.22), transparent 70%)`,
+            opacity: glarePos.opacity,
+          }}
+        />
 
-      <Image
-        src={product?.image_url || "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=1200&auto=format&fit=crop"}
-        alt="Areva Bespoke Suit"
-        fill
-        priority
-        className="object-cover transition-transform duration-700 group-hover:scale-105"
-      />
-      
-      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent transition-opacity" />
+        <Image
+          src={product?.image_url || "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=1200&auto=format&fit=crop"}
+          alt="Areva Bespoke Suit"
+          fill
+          priority
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent transition-opacity" />
 
-      {/* Premier Piece Overlay */}
-      <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-card/90 backdrop-blur-md border border-border shadow-xl z-20">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-primary text-[10px] font-serif font-semibold tracking-[0.25em] uppercase">Premier Commission</p>
-            <h2 className="text-lg font-serif text-foreground mt-0.5">{product?.name || "Bespoke Suit"}</h2>
-          </div>
-          <Link href={`/products/${product?.slug || 'jas-luxury'}`}>
-            <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all shadow-[0_0_15px_rgba(180,133,32,0.15)]">
-              <ArrowUpRight size={16} className="stroke-[2]" />
+        {/* Premier Piece Overlay */}
+        <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-card/90 backdrop-blur-md border border-border shadow-xl z-20">
+          <div className="flex items-center justify-between">
+            <div className="text-left">
+              <p className="text-primary text-[10px] font-mono font-semibold tracking-[0.25em] uppercase">Premier Commission</p>
+              <h2 className="text-lg font-serif text-foreground mt-0.5">{product?.name || "Bespoke Suit"}</h2>
             </div>
-          </Link>
+            <Link href={`/products/${product?.slug || 'jas-luxury'}`}>
+              <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all shadow-sm">
+                <ArrowUpRight size={16} className="stroke-[2]" />
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
+
+      {/* Decorative Floating Badge - Bottom Right */}
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="hidden sm:flex absolute -bottom-2 -right-4 z-30 p-3 rounded-2xl bg-card/95 backdrop-blur-md border border-border shadow-[0_4px_20px_rgba(0,0,0,0.06)] items-center gap-3"
+      >
+        <div className="w-8 h-8 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary shrink-0">
+          <Award size={15} />
+        </div>
+        <div className="text-left">
+          <p className="text-[10px] font-mono uppercase tracking-wider text-primary font-semibold">Floating Canvas</p>
+          <p className="text-xs font-serif text-foreground font-medium">Zero Industrial Glue</p>
+        </div>
+      </motion.div>
     </div>
   )
 }
@@ -117,54 +140,71 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground transition-colors duration-300">
       {/* === HERO SECTION === */}
-      <section className="relative min-h-[calc(100vh-5rem)] flex items-center overflow-hidden border-b border-border py-8 lg:py-12">
+      <section className="relative min-h-[calc(100vh-5rem)] flex items-center overflow-hidden border-b border-border py-12 lg:py-20">
         {/* Three.js Interactive Silk Wave Shader */}
         <SilkClothCanvas />
 
-        {/* Subtle Vignette Scrim */}
+        {/* Ambient Radial Aura for Depth */}
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_20%,hsl(var(--background))_95%)] z-[1]" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
-            {/* Left Column: Precision Typography */}
+            {/* Left Column: Precision Typography & Craft Pillars */}
             <div className="lg:col-span-7 space-y-6 text-left">
-              {/* Eyebrow Label with Fade */}
+              
+              {/* Eyebrow Label */}
               <motion.div 
                 initial={reduce ? false : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-secondary/80 border border-border"
+                className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-card/90 backdrop-blur-sm border border-border shadow-xs"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(180,133,32,0.8)]" />
-                <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
-                  Bespoke Atelier • Jakarta
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-foreground font-medium">
+                  Bespoke Atelier • Jakarta • Est. 1998
                 </span>
               </motion.div>
 
-              {/* Masked Editorial Headline with SplitText */}
-              <div className="space-y-1">
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif text-foreground leading-[1.08] tracking-tight">
-                  <SplitText text="Handcrafted Suits" delay={0.05} />
-                </h1>
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif leading-[1.08] tracking-tight">
-                  <span className="text-primary italic font-light">
-                    <SplitText text="Tailored to Perfection" delay={0.25} />
+              {/* Editorial Headline with Generous Line Height and Zero Clipping */}
+              <div className="py-1">
+                <h1 className="text-3xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-serif tracking-tight leading-[1.16] text-foreground">
+                  <span className="block">
+                    <SplitText text="Handcrafted Suits" delay={0.05} />
+                  </span>
+                  <span className="block text-primary font-normal mt-1">
+                    <SplitText text="Tailored to Perfection" delay={0.2} />
                   </span>
                 </h1>
               </div>
 
               {/* Subhead Paragraph */}
               <p className="text-sm sm:text-base text-muted-foreground font-light leading-relaxed max-w-xl">
-                Experience world-class custom tailoring made to your exact measurements. Crafted by master tailors with premium Italian and English wools from Scabal and Loro Piana.
+                Menghadirkan kenyamanan, wibawa, dan siluet presisi untuk para tokoh dan eksekutif. Setiap setelan dirancang dari nol dengan kanvas kuda alami (floating canvas) tanpa lem industri dan bahan wool murni dari Scabal of London serta Loro Piana Italia.
               </p>
+
+              {/* Craftsmanship Pillars (Solves the empty hero feeling) */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card/85 border border-border text-foreground/90 font-medium">
+                  <CheckCircle2 size={13} className="text-primary" />
+                  <span>Floating Horsehair Canvas</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card/85 border border-border text-foreground/90 font-medium">
+                  <CheckCircle2 size={13} className="text-primary" />
+                  <span>Pola Kertas Individual</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card/85 border border-border text-foreground/90 font-medium">
+                  <CheckCircle2 size={13} className="text-primary" />
+                  <span>Private Fitting Concierge</span>
+                </div>
+              </div>
 
               {/* Action Buttons with Magnet Micro-Interaction */}
               <motion.div 
                 initial={reduce ? false : { opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-3"
               >
                 {/* Primary Button */}
                 <Magnet disabled={false} magnetStrength={0.25}>
@@ -187,7 +227,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
                     <Button 
                       variant="outline" 
                       size="lg" 
-                      className="w-full sm:w-auto min-w-[200px] h-12 rounded-full border border-border group-hover:border-primary text-foreground group-hover:text-primary hover:bg-muted/50 font-serif text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 bg-background/60 backdrop-blur-sm cursor-pointer"
+                      className="w-full sm:w-auto min-w-[200px] h-12 rounded-full border border-border group-hover:border-primary text-foreground group-hover:text-primary hover:bg-card font-serif text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 bg-card/60 backdrop-blur-sm cursor-pointer shadow-xs"
                     >
                       <span className="relative z-10">Reserve Fitting</span>
                     </Button>
@@ -195,25 +235,52 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
                 </Magnet>
               </motion.div>
 
-              {/* Sartorial Metrics */}
+              {/* Structured Sartorial Metrics */}
               <motion.div 
                 initial={reduce ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.45 }}
-                className="pt-6 border-t border-border grid grid-cols-3 gap-6 max-w-lg"
+                className="pt-6 border-t border-border grid grid-cols-3 gap-3 sm:gap-5 max-w-xl"
               >
-                <MetricCounter target={40} suffix="+" label="Body Measurements" />
-                <MetricCounter target={100} suffix="%" label="Hand-Stitched Canvas" />
-                <MetricCounter target={3} suffix=" Stages" label="Custom Fittings" />
+                <div className="p-3 sm:p-4 rounded-xl bg-card/75 border border-border shadow-xs">
+                  <div className="flex items-center gap-1.5 text-primary">
+                    <Ruler size={14} />
+                    <span className="text-xl sm:text-2xl font-serif text-foreground font-medium">40+</span>
+                  </div>
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono block mt-1">
+                    Titik Ukur Anatomi
+                  </span>
+                </div>
+
+                <div className="p-3 sm:p-4 rounded-xl bg-card/75 border border-border shadow-xs">
+                  <div className="flex items-center gap-1.5 text-primary">
+                    <ShieldCheck size={14} />
+                    <span className="text-xl sm:text-2xl font-serif text-foreground font-medium">100%</span>
+                  </div>
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono block mt-1">
+                    Floating Canvas
+                  </span>
+                </div>
+
+                <div className="p-3 sm:p-4 rounded-xl bg-card/75 border border-border shadow-xs">
+                  <div className="flex items-center gap-1.5 text-primary">
+                    <Scissors size={14} />
+                    <span className="text-xl sm:text-2xl font-serif text-foreground font-medium">3-4</span>
+                  </div>
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono block mt-1">
+                    Minggu Pengerjaan
+                  </span>
+                </div>
               </motion.div>
+
             </div>
 
-            {/* Right Column: Magnetic 3D Tilt Card */}
+            {/* Right Column: Layered Magnetic 3D Tilt Card */}
             <motion.div 
               initial={reduce ? false : { opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 relative"
+              className="lg:col-span-5 relative flex items-center justify-center"
             >
               <MagneticTiltCard product={featuredProducts?.[0] || null} />
             </motion.div>
@@ -231,7 +298,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
               <span className="font-mono text-xs text-primary uppercase tracking-[0.25em]">01 / Perfect Fit</span>
               <h3 className="text-xl font-serif text-foreground tracking-wide">Custom Paper Pattern</h3>
               <p className="text-muted-foreground text-sm leading-relaxed font-light">
-                Each suit begins with an individual pattern hand-drafted specifically for your posture, shoulders, and natural movement.
+                Setiap jas dimulai dari pola kertas yang digambar tangan secara individual sesuai lekuk bahu, postur tulang, dan gerak alami tubuh Anda.
               </p>
             </SpotlightCard>
 
@@ -239,7 +306,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
               <span className="font-mono text-xs text-primary uppercase tracking-[0.25em]">02 / Durability</span>
               <h3 className="text-xl font-serif text-foreground tracking-wide">Full-Canvas Structure</h3>
               <p className="text-muted-foreground text-sm leading-relaxed font-light">
-                Constructed with natural floating canvas stitched by hand, allowing the jacket to comfortably shape to your body over time.
+                Konstruksi kanvas bulu kuda alami dijahit tangan tanpa lem sintetis, memungkinkan jas bernapas dan membentuk postur tubuh makin sempurna seiring waktu.
               </p>
             </SpotlightCard>
 
@@ -247,7 +314,7 @@ export function HeroSection({ featuredProducts }: HeroSectionProps) {
               <span className="font-mono text-xs text-primary uppercase tracking-[0.25em]">03 / Materials</span>
               <h3 className="text-xl font-serif text-foreground tracking-wide">World-Class Fabrics</h3>
               <p className="text-muted-foreground text-sm leading-relaxed font-light">
-                Carefully selected fine wools from renowned European mills, paired with authentic Indonesian hand-drawn silk batiks.
+                Koleksi wool murni pilihan dari pabrik legendaris Eropa (Scabal, Loro Piana), dipadukan dengan kain sutra batik canting tulis nusantara asli.
               </p>
             </SpotlightCard>
 

@@ -26,13 +26,13 @@ export function SplitText({
   return (
     <span className={`inline-flex flex-wrap gap-x-[0.28em] ${className}`}>
       {words.map((word, wordIndex) => (
-        <span key={wordIndex} className="inline-block overflow-hidden pb-1">
+        <span key={wordIndex} className="inline-block">
           <motion.span
-            initial={{ y: "100%", opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ y: 20, opacity: 0, filter: "blur(3px)" }}
+            animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
             transition={{
               duration: 0.7,
-              ease: [0.23, 1, 0.32, 1],
+              ease: [0.16, 1, 0.3, 1],
               delay: delay + wordIndex * stagger,
             }}
             className="inline-block will-change-transform"

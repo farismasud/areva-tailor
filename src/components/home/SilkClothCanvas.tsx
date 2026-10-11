@@ -46,10 +46,10 @@ export function SilkClothCanvas() {
     }
 
     const lightPalette = {
-      dark: new THREE.Color("#faf8f5"),
-      silk: new THREE.Color("#ede7dc"),
-      gold: new THREE.Color("#c59b27"),
-      highlight: new THREE.Color("#ffffff"),
+      dark: new THREE.Color("#FAF8F5"),
+      silk: new THREE.Color("#E5DDD0"),
+      gold: new THREE.Color("#B48520"),
+      highlight: new THREE.Color("#F5EFE6"),
     }
 
     const initialPalette = isDark ? darkPalette : lightPalette
