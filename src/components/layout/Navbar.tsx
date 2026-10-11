@@ -12,7 +12,6 @@ const navItems = [
   { label: "HOME", href: "/" },
   { label: "COLLECTION", href: "/products" },
   { label: "ABOUT", href: "/about" },
-  { label: "3D LAB", href: "/lab-3d" },
   { label: "APPOINTMENT", href: "/contact" },
 ]
 

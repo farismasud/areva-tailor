@@ -9,13 +9,15 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 const cinzel = Cinzel({ 
   subsets: ["latin"], 
   variable: "--font-cinzel",
-  weight: ["400", "600", "700"] 
+  weight: ["400", "600", "700"],
+  display: "swap",
 });
 
 const lato = Lato({ 
   subsets: ["latin"], 
   variable: "--font-lato",
-  weight: ["300", "400", "700"] 
+  weight: ["300", "400", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
